@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
+
+  <title>NutritionPlans</title>
+</head>
+<body>
+<nav>
+
+</nav>
+<main>
+  <!--  <div class="nav-bar" th:insert="~{fragments/common/navigation-bar :: navigation-bar ('users')}"></div>-->
+
+  <div class="home-section">
+    <div class="single-section-box subscriptions-container">
+      <table class="styled-table">
+        <thead>
+        <tr>
+          <th>Creator</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Description</th>
+          <th>MuscleGroupsTargeted</th>
+          <th>Difficulty</th>
+          <th>Equipment</th>
+          <th>Steps</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="exercise : ${historyList}" class="my-paintings">
+          <td th:text="${user.username}">[Creator]</td>
+          <td th:text="${exercise.name}">[Name]</td>
+          <td th:text="${exercise.category}">[Category]</td>
+          <td th:text="${exercise.description}">[Description]</td>
+          <td th:text="${exercise.muscleGroupsTargeted}">[MuscleGroupsTargeted]</td>
+          <td th:text="${exercise.difficulty}">[Difficulty]</td>
+          <td th:text="${exercise.equipment}">[Equipment]</td>
+          <td th:text="${exercise.steps}">[Steps]</td>
+
+          <!--                        <form th:action="@{'/users/' + ${singleUser.id} + '/delete-user'}" th:method="DELETE">-->
+          <!--                            <button class="profile-actions-button">-->
+          <!--                                <p>Delete</p>-->
+          <!--                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-toggle-on"-->
+          <!--                                     viewBox="0 0 16 16">-->
+          <!--                                    <path d="M5 3a5 5 0 0 0 0 10h6a5 5 0 0 0 0-10zm6 9a4 4 0 1 1 0-8 4 4 0 0 1 0 8"/>-->
+          <!--                                </svg>-->
+          <!--                            </button>-->
+          <!--                        </form>-->
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<!--<div class="footer" th:insert="~{fragments/common/footer :: footer}"></div>-->
+</body>
+</html>

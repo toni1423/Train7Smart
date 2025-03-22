@@ -3,6 +3,7 @@ package org.app.train7smartapp.web;
 import jakarta.servlet.http.HttpSession;
 import org.app.train7smartapp.security.RequireAdminRole;
 import org.app.train7smartapp.user.model.User;
+import org.app.train7smartapp.user.repository.UserRepository;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.UserEditRequest;
 import org.app.train7smartapp.web.dto.UserInformation;
@@ -20,10 +21,12 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/{id}/profile")
@@ -82,4 +85,21 @@ public class UserController {
 
         return "redirect:/users";
     }
+
+//    @GetMapping("/forgotPassword")
+//    public String forgotPassword() {
+//
+//        return "forgotPassword";
+//    }
+//
+//    @PostMapping("/forgotPassword")
+//    public String forgotPasswordProcess(@ModelAttribute UserEditRequest userEditRequest) {
+//
+//        User user = userRepository.findByEmail(userEditRequest.getEmail());
+//
+//        if (user != null) {
+//
+//        }
+//        return "";
+//    }
 }

@@ -1,9 +1,9 @@
-package org.app.train7smartapp.workout.model;
-
-public enum IntensityLevel {
-
-    LOW,
-    MEDIUM,
-    HIGH,
-
-}
+//package org.app.train7smartapp.workout.model;
+//
+//public enum IntensityLevel {
+//
+//    LOW,
+//    MEDIUM,
+//    HIGH,
+//
+//}

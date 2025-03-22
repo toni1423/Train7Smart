@@ -36,6 +36,7 @@ public class NutritionPlanService {
                 .dailyCaloricIntake(nutritionPlanRequest.getDailyCaloricIntake())
                 .macronutrientBreakdown(nutritionPlanRequest.getMacronutrientBreakdown())
                 .dietaryRestrictions(nutritionPlanRequest.getDietaryRestrictions())
+                .nutritionPlanUrl(nutritionPlanRequest.getNutritionPlanUrl())
                 .build();
 
         nutritionPlanRepository.save(creatednutritionPlan);

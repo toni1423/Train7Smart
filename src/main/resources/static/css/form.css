@@ -121,6 +121,24 @@ input:hover, select:hover {
   margin: 20px auto auto;
 }
 
+.form-forgot-password {
+  color: #e5e5e5;
+  font-weight: 300;
+  text-align: center;
+  font-size: 12px;
+  margin: 20px auto auto;
+}
+
+.form-forgot-password a {
+  text-decoration: none;
+  transition: 0.5s ease-out;
+  background: radial-gradient(circle at 90% top, #746ab0 0%, #a095e6 10%, #faf9f9 20%, #c5bfff 30%, #978ef1 40%, #7871f6 50%, #817cff 60%, #8eafe9 70%, #a1a1ff 80%, #a8a8ff 90%, #6d78f3 100%);
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .form-already a {
   text-decoration: none;
   transition: 0.5s ease-out;

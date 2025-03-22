@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import org.app.train7smartapp.user.model.FitnessLevel;
 import org.app.train7smartapp.user.model.Gender;
 import org.hibernate.validator.constraints.URL;

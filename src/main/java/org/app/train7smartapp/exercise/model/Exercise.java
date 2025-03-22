@@ -2,7 +2,9 @@ package org.app.train7smartapp.exercise.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.app.train7smartapp.workout.model.Workout;
+import org.app.train7smartapp.user.model.User;
+import org.attoparser.dom.Text;
+//import org.app.train7smartapp.workout.model.Workout;
 
 import java.util.UUID;
 
@@ -19,22 +21,35 @@ public class Exercise {
     private UUID id;
 
     @ManyToOne
-    private Workout workout;
-
-
-
+    private User creator;
 
     @Column(nullable = false)
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     @Column(nullable = false)
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private Type type;
+    private MuscleGroupsTargeted muscleGroupsTargeted;
 
     @Enumerated(EnumType.STRING)
-    private MuscleGroupsTargeted muscleGroupsTargeted;
+    private Diffculty difficulty;
+
+    private String equipment;
+
+    @Column(nullable = false)
+    private String steps;
+
+
+
+
+
+
+
+
 
     @Column
     private String videoURL;

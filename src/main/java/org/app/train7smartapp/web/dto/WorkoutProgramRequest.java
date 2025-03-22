@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.app.train7smartapp.workoutProgram.model.Goal;
-import org.app.train7smartapp.workout.model.Type;
+//import org.app.train7smartapp.workout.model.Type;
 import org.app.train7smartapp.workoutProgram.model.Level;
 import org.hibernate.validator.constraints.URL;
 

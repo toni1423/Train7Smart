@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.user.model.User;
-import org.app.train7smartapp.workout.model.Workout;
+
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -49,8 +49,8 @@ public class WorkoutProgram {
     @Column(nullable = false)
     private String url;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "workoutProgram")
-    @OrderBy("name ASC")
-    private List<Workout> workouts= new ArrayList<>();
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "workoutProgram")
+//    @OrderBy("name ASC")
+//    private List<Workout> workouts= new ArrayList<>();
 
 }

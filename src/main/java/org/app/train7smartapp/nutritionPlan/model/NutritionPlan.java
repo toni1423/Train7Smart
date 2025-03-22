@@ -33,6 +33,9 @@ public class NutritionPlan {
     @Enumerated(EnumType.STRING)
     private DietaryRestrictions dietaryRestrictions;
 
+    @Column(nullable = false)
+    private String nutritionPlanUrl;
+
 
     //Meal Suggestions (List of meals)
 

@@ -29,6 +29,9 @@ public class NutritionPlanRequest {
 
     private DietaryRestrictions dietaryRestrictions;
 
+
+    private String nutritionPlanUrl;
+
 }
 
 

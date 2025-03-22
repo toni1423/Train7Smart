@@ -1,8 +1,10 @@
 package org.app.train7smartapp.workoutProgram.service;
 
 import org.app.train7smartapp.exeption.DomainException;
+import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.user.model.User;
 //import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
+import org.app.train7smartapp.web.dto.ExerciseRequest;
 import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
 import org.app.train7smartapp.workoutProgram.model.FavoriteWorkoutProgram;
 import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
@@ -32,18 +34,7 @@ public class WorkoutProgramService {
 
     public void createNewWorkoutProgram(WorkoutProgramRequest workoutProgramRequest, User user) {
 
-        Optional<WorkoutProgram> optionalWorkout = workoutProgramsRepository.findByName(workoutProgramRequest.getName());
-
-        if (optionalWorkout.isPresent()) {
-            throw  new DomainException("Workout with name=[%s] already exist.".formatted(workoutProgramRequest.getName()), HttpStatus.BAD_REQUEST);
-        }
-
-        WorkoutProgram workoutProgram = initilizeWorkoutProgram(workoutProgramRequest, user);
-
-    }
-
-    private WorkoutProgram initilizeWorkoutProgram(WorkoutProgramRequest workoutProgramRequest, User user) {
-        return WorkoutProgram.builder()
+        WorkoutProgram workoutProgram = WorkoutProgram.builder()
                 .creator(user)
                 .name(workoutProgramRequest.getName())
                 .duration(workoutProgramRequest.getDuration())
@@ -52,6 +43,14 @@ public class WorkoutProgramService {
                 .createdOn(LocalDateTime.now())
                 .url(workoutProgramRequest.getUrl())
                 .build();
+
+        workoutProgramsRepository.save(workoutProgram);
+    }
+
+    public List<WorkoutProgram> getAllWorkoutProgram() {
+
+        return workoutProgramsRepository.findAll();
+
     }
 
 

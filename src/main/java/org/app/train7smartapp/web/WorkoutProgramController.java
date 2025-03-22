@@ -2,9 +2,11 @@ package org.app.train7smartapp.web;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
+import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
 import org.app.train7smartapp.workoutProgram.service.WorkoutProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -61,6 +64,22 @@ public class WorkoutProgramController {
         workoutProgramService.createNewWorkoutProgram(workoutProgramRequest, user);
 
         return new ModelAndView("redirect:/home");
+    }
+
+    @GetMapping("/history")
+    public ModelAndView getWorkoutHistory(HttpSession session) {
+
+        UUID userId = (UUID) session.getAttribute("user_id");
+        User user = userService.getById(userId);
+
+        List<WorkoutProgram> workoutHistory = workoutProgramService.getAllWorkoutProgram();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("user", user);
+        modelAndView.addObject("historyList", workoutHistory);
+        modelAndView.setViewName("workouts");
+
+        return modelAndView;
     }
 
 //    @DeleteMapping("/{id}")

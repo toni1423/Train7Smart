@@ -2,6 +2,7 @@ package org.app.train7smartapp.user.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.workoutProgram.model.FavoriteWorkoutProgram;
 import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
@@ -87,5 +88,9 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
     @OrderBy("creator ASC")
     private List<NutritionPlan> nutritionPlans = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
+    @OrderBy("creator ASC")
+    private List<Exercise> exercises = new ArrayList<>();
 
 }

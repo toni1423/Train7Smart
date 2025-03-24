@@ -22,9 +22,10 @@ public class NutritionPlan {
     @ManyToOne
     private User creator;
 
+    @Column(nullable = false)
     private String name;
 
-
+    @Column(nullable = false)
     private String dailyCaloricIntake;
 
     @Enumerated(EnumType.STRING)

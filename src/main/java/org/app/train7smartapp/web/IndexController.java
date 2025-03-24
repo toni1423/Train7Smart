@@ -2,19 +2,19 @@ package org.app.train7smartapp.web;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.LoginRequest;
 import org.app.train7smartapp.web.dto.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.UUID;
-
 
 @Controller
 public class IndexController {
@@ -34,10 +34,10 @@ public class IndexController {
     @GetMapping("/register")
     public ModelAndView getRegisterPage() {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("register");
-        model.addObject("registerRequest", new RegisterRequest());
-        return model;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("register");
+        modelAndView.addObject("registerRequest", new RegisterRequest());
+        return modelAndView;
     }
 
     @PostMapping("/register")
@@ -51,49 +51,31 @@ public class IndexController {
 
 
 
+
         return "redirect:/login";
     }
 
     @GetMapping("/login")
-    public ModelAndView getLoginPage() {
+    public ModelAndView getLoginPage(@RequestParam(value = "error",  required = false)  String errorParam) {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("login");
-        model.addObject("loginRequest", new LoginRequest());
-        return model;
-    }
-
-
-    @PostMapping("/login")
-    public String processRegisterPage(@Valid LoginRequest loginRequest, BindingResult bindingResult, HttpSession session) {
-
-        if (bindingResult.hasErrors()) {
-            return "login";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        modelAndView.addObject("loginRequest", new LoginRequest());
+        if (errorParam != null) {
+            modelAndView.addObject("errorMessage", "Invalid username or password");
         }
 
-        User user = userService.loginUser(loginRequest);
-
-        session.setAttribute("user_id", user.getId());
-
-        return "redirect:/home";
-
+        return modelAndView;
     }
+
 
     @GetMapping("/home")
-    public ModelAndView getHomePage(HttpSession session) {
+    public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID)session.getAttribute("user_id");
-        User user = userService.getById(userId);
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("home");
-        mav.addObject("user", user);
-        return mav;
-    }
-
-    @GetMapping("/logout")
-    public String getLogout(HttpSession session) {
-
-        session.invalidate();
-        return "redirect:/";
+        User user = userService.getById(authenticationDetails.getUserId());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
+        modelAndView.addObject("user", user);
+        return modelAndView;
     }
 }

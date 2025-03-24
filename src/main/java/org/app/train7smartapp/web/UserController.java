@@ -1,14 +1,10 @@
 package org.app.train7smartapp.web;
 
-import jakarta.servlet.http.HttpSession;
-import org.app.train7smartapp.security.RequireAdminRole;
 import org.app.train7smartapp.user.model.User;
-import org.app.train7smartapp.user.repository.UserRepository;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.UserEditRequest;
-import org.app.train7smartapp.web.dto.UserInformation;
-import org.app.train7smartapp.web.mapper.DtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,12 +17,10 @@ import java.util.UUID;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserService userService, UserRepository userRepository) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userRepository = userRepository;
     }
 
     @GetMapping("/{id}/profile")
@@ -50,8 +44,8 @@ public class UserController {
         return "redirect:/home";
     }
 
-    @RequireAdminRole
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView getAllUsers() {
 
         List<User> users = userService.getAllUsers();
@@ -84,22 +78,6 @@ public class UserController {
         userService.deleteUserAccount(id);
 
         return "redirect:/users";
-    }
 
-//    @GetMapping("/forgotPassword")
-//    public String forgotPassword() {
-//
-//        return "forgotPassword";
-//    }
-//
-//    @PostMapping("/forgotPassword")
-//    public String forgotPasswordProcess(@ModelAttribute UserEditRequest userEditRequest) {
-//
-//        User user = userRepository.findByEmail(userEditRequest.getEmail());
-//
-//        if (user != null) {
-//
-//        }
-//        return "";
-//    }
+    }
 }

@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.nutritionPlan.service.NutritionPlanService;
-import org.app.train7smartapp.security.RequireAdminRole;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.NutritionPlanRequest;
@@ -75,10 +74,10 @@ public class NutritionPlanController {
         UUID userId = (UUID) session.getAttribute("user_id");
         User user = userService.getById(userId);
 
-        List<NutritionPlan> nutritionPlans = nutritionPlanService.getAllNutritionPlans();
+        List<NutritionPlan> nutritionPlanLibrary = nutritionPlanService.getAllNutritionPlans();
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("nutritionPlan");
-        modelAndView.addObject("nutritionPlans", nutritionPlans);
+        modelAndView.setViewName("nutritionPlanLibrary");
+        modelAndView.addObject("nutritionPlans", nutritionPlanLibrary);
         modelAndView.addObject("user", user);
 
         return modelAndView;

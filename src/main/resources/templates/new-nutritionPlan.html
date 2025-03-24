@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -21,7 +22,8 @@
     <div class="home-section">
         <div class="single-section-box profile-menu">
 
-            <form class="welcome add-offer-form" th:method="POST" th:action="@{/nutritionPlans}" th:object="${nutritionPlanRequest}">
+            <form class="welcome add-offer-form" th:method="POST" th:action="@{/nutritionPlans}"
+                  th:object="${nutritionPlanRequest}">
 
                 <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add NutritionPlan</span></h1>
 
@@ -30,78 +32,46 @@
                         <label for="name" class="h4 mb-2">Name</label>
                     </div>
                     <input type="text" class="form-control" id="name" name="name" value="" th:field="*{name}"/>
-                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="bg-danger text-light rounded">Name error message</small>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                           class="alert-warning">Name error message</small>
                 </div>
 
-                               <label for="dietaryRestrictions">DietaryRestrictions</label>
-                               <select class="browser-default custom-select" id="dietaryRestrictions" name="dietaryRestrictions" th:field="*{dietaryRestrictions}">
+                <label for="dietaryRestrictions">DietaryRestrictions</label>
+                <select class="browser-default custom-select" id="dietaryRestrictions" name="dietaryRestrictions"
+                        th:field="*{dietaryRestrictions}">
 
-                                   <option th:each="dietaryRestrictions : ${T(org.app.train7smartapp.nutritionPlan.model.DietaryRestrictions).values()}" th:value="${dietaryRestrictions}" th:text="${dietaryRestrictions}"></option>
-                               </select>
+                    <option th:each="dietaryRestrictions : ${T(org.app.train7smartapp.nutritionPlan.model.DietaryRestrictions).values()}"
+                            th:value="${dietaryRestrictions}" th:text="${dietaryRestrictions}"></option>
+                </select>
 
 
-                                <label for="macronutrientBreakdown">MacronutrientBreakdown</label>
-                                <select class="browser-default custom-select" id="macronutrientBreakdown" name="macronutrientBreakdown" th:field="*{macronutrientBreakdown}">
-                                    <option th:each="macronutrientBreakdown : ${T(org.app.train7smartapp.nutritionPlan.model.MacronutrientBreakdown).values()}" th:value="${macronutrientBreakdown}" th:text="${macronutrientBreakdown}"></option>
-                                </select>
+                <label for="macronutrientBreakdown">MacronutrientBreakdown</label>
+                <select class="browser-default custom-select" id="macronutrientBreakdown" name="macronutrientBreakdown"
+                        th:field="*{macronutrientBreakdown}">
+                    <option th:each="macronutrientBreakdown : ${T(org.app.train7smartapp.nutritionPlan.model.MacronutrientBreakdown).values()}"
+                            th:value="${macronutrientBreakdown}" th:text="${macronutrientBreakdown}"></option>
+                </select>
 
-                                <label for="dailyCaloricIntake">DailyCaloricIntake</label>
-                                <input type="text" id="dailyCaloricIntake" placeholder="DailyCaloricIntake" th:field="*{dailyCaloricIntake}">
-                                <small th:if="${#fields.hasErrors('dailyCaloricIntake')}" th:errors="*{dailyCaloricIntake}"  class="bg-danger text-light rounded">Description error message</small>-->
+                <label for="dailyCaloricIntake">DailyCaloricIntake</label>
+                <input type="text" id="dailyCaloricIntake" placeholder="DailyCaloricIntake"
+                       th:field="*{dailyCaloricIntake}">
+                <small th:if="${#fields.hasErrors('dailyCaloricIntake')}" th:errors="*{dailyCaloricIntake}"
+                       class="alert-warning">Description error message</small>-->
 
-                                <label for="nutritionPlanUrl">NutritionPlanUrl</label>
-                                <input type="text" id="nutritionPlanUrl" placeholder="NutritionPlanUrl" th:field="*{nutritionPlanUrl}">
-                                <small th:if="${#fields.hasErrors('nutritionPlanUrl')}" th:errors="*{nutritionPlanUrl}"  class="bg-danger text-light rounded">Description error message</small>-->
+                <label for="nutritionPlanUrl">NutritionPlanUrl</label>
+                <input type="text" id="nutritionPlanUrl" placeholder="NutritionPlanUrl" th:field="*{nutritionPlanUrl}">
+                <small th:if="${#fields.hasErrors('nutritionPlanUrl')}" th:errors="*{nutritionPlanUrl}"
+                       class="alert-warning">Description error message</small>-->
 
-                                <button class="profile-actions-button">
-                                    <p>Add </p>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    </svg>
-                              </button>
-
+                <button class="profile-actions-button">
+                    <p>Add </p>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                              stroke-linejoin="round"></path>
+                    </svg>
+                </button>
             </form>
 
-<!--            <form class="form" th:method="POST" th:action="@{/nutritionPlans}" th:object="${nutritionPlanRequest}">-->
-
-
-<!--                <label for="name">Name</label>&ndash;&gt;-->
-<!--                <input type="text" id="name" placeholder="Name" th:field="*{name}">&ndash;&gt;-->
-<!--                <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}"  class="bg-danger text-light rounded">Description error message</small>-->
-
-<!--                <label for="dietaryRestrictions">DietaryRestrictions</label>&ndash;&gt;-->
-<!--                <select class="browser-default custom-select" id="dietaryRestrictions" name="dietaryRestrictions" th:field="*{dietaryRestrictions}">&ndash;&gt;-->
-
-<!--                    <option th:each="dietaryRestrictions : ${T(org.app.train7smartapp.nutritionPlan.model.DietaryRestrictions).values()}" th:value="${dietaryRestrictions}" th:text="${dietaryRestrictions}"></option>&ndash;&gt;-->
-<!--                </select>&ndash;&gt;-->
-
-
-<!--                <label for="macronutrientBreakdown">MacronutrientBreakdown</label>&ndash;&gt;-->
-<!--                <select class="browser-default custom-select" id="macronutrientBreakdown" name="macronutrientBreakdown" th:field="*{macronutrientBreakdown}">&ndash;&gt;-->
-<!--                    <option th:each="macronutrientBreakdown : ${T(org.app.train7smartapp.nutritionPlan.model.MacronutrientBreakdown).values()}" th:value="${macronutrientBreakdown}" th:text="${macronutrientBreakdown}"></option>&ndash;&gt;-->
-<!--                </select>&ndash;&gt;-->
-
-<!--                <label for="dailyCaloricIntake">DailyCaloricIntake</label>&ndash;&gt;-->
-<!--                <input type="text" id="dailyCaloricIntake" placeholder="DailyCaloricIntake" th:field="*{dailyCaloricIntake}">&ndash;&gt;-->
-<!--                <small th:if="${#fields.hasErrors('dailyCaloricIntake')}" th:errors="*{dailyCaloricIntake}"  class="bg-danger text-light rounded">Description error message</small>-->
-
-<!--                <label for="nutritionPlanUrl">NutritionPlanUrl</label>&ndash;&gt;-->
-<!--                <input type="text" id="nutritionPlanUrl" placeholder="NutritionPlanUrl" th:field="*{nutritionPlanUrl}">&ndash;&gt;-->
-<!--                <small th:if="${#fields.hasErrors('nutritionPlanUrl')}" th:errors="*{nutritionPlanUrl}"  class="bg-danger text-light rounded">Description error message</small>-->
-<!--                <button class="profile-actions-button">-->
-<!--                    <p>Save</p>-->
-<!--                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>-->
-<!--                    </svg>-->
-<!--                </button>-->
-<!--                <button class="profile-actions-button">-->
-<!--                    <p>Dashboard</p>-->
-<!--                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>-->
-<!--                    </svg>-->
-<!--                </button>-->
-
-<!--            </form>-->
         </div>
     </div>
 </main>

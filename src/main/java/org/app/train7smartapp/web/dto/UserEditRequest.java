@@ -1,10 +1,9 @@
 package org.app.train7smartapp.web.dto;
 
-import jakarta.persistence.Column;
+
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import org.app.train7smartapp.user.model.FitnessLevel;
 import org.app.train7smartapp.user.model.Gender;
 import org.hibernate.validator.constraints.URL;
@@ -32,16 +31,16 @@ public class UserEditRequest {
 
     private Gender gender;
 
-
+    @Positive
     private String height;
 
-
+    @Positive
     private String weight;
 
     @Positive
     private int age;
 
-
+    @NotBlank
     private String city;
 
 }

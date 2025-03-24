@@ -38,9 +38,6 @@ public class FavoriteWorkoutProgram {
     private Goal goal;
 
     @Column(nullable = false)
-    private LocalDateTime createdOn;
-
-    @Column(nullable = false)
     private String url;
 
 }

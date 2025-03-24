@@ -18,6 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -31,6 +32,7 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Country country;
 
     @Enumerated(EnumType.STRING)
@@ -69,8 +71,6 @@ public class User {
     private String weight;
 
 
-
-    @Column
     private boolean isActive;
 
     @Column(nullable = false)

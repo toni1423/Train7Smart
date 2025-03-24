@@ -2,13 +2,14 @@ package org.app.train7smartapp.web;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import org.app.train7smartapp.exercise.model.Exercise;
+import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
 import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
 import org.app.train7smartapp.workoutProgram.service.WorkoutProgramService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +32,9 @@ public class WorkoutProgramController {
     }
 
     @GetMapping("/new")
-    public ModelAndView getNewWorkoutPage(HttpSession session) {
+    public ModelAndView getNewWorkoutPage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new-workout-program");
@@ -46,10 +46,9 @@ public class WorkoutProgramController {
     }
 
     @PostMapping
-    public ModelAndView createNewWorkout(@Valid WorkoutProgramRequest workoutProgramRequest, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView createNewWorkout(@Valid WorkoutProgramRequest workoutProgramRequest, BindingResult bindingResult,  @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         if (bindingResult.hasErrors()) {
 
@@ -67,17 +66,16 @@ public class WorkoutProgramController {
     }
 
     @GetMapping("/history")
-    public ModelAndView getWorkoutHistory(HttpSession session) {
+    public ModelAndView getWorkoutsLibrary(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
-        List<WorkoutProgram> workoutHistory = workoutProgramService.getAllWorkoutProgram();
+        List<WorkoutProgram> workout = workoutProgramService.getAllWorkoutProgram();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", user);
-        modelAndView.addObject("historyList", workoutHistory);
-        modelAndView.setViewName("workouts");
+        modelAndView.addObject("historyList", workout);
+        modelAndView.setViewName("workoutsLibrary");
 
         return modelAndView;
     }

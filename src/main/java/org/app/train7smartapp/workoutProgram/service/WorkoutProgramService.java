@@ -1,35 +1,25 @@
 package org.app.train7smartapp.workoutProgram.service;
 
-import org.app.train7smartapp.exeption.DomainException;
-import org.app.train7smartapp.exercise.model.Exercise;
+
 import org.app.train7smartapp.user.model.User;
-//import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
-import org.app.train7smartapp.web.dto.ExerciseRequest;
 import org.app.train7smartapp.web.dto.WorkoutProgramRequest;
-import org.app.train7smartapp.workoutProgram.model.FavoriteWorkoutProgram;
 import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
-import org.app.train7smartapp.workoutProgram.repository.FavoriteWorkoutProgramsRepository;
 import org.app.train7smartapp.workoutProgram.repository.WorkoutProgramsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class WorkoutProgramService {
 
     private final WorkoutProgramsRepository workoutProgramsRepository;
-    private final FavoriteWorkoutProgramsRepository favoriteWorkoutProgramsRepository;
+
 
     @Autowired
-    public WorkoutProgramService(WorkoutProgramsRepository workoutProgramsRepository, FavoriteWorkoutProgramsRepository favoriteWorkoutProgramsRepository) {
+    public WorkoutProgramService(WorkoutProgramsRepository workoutProgramsRepository) {
         this.workoutProgramsRepository = workoutProgramsRepository;
-        this.favoriteWorkoutProgramsRepository = favoriteWorkoutProgramsRepository;
     }
 
     public void createNewWorkoutProgram(WorkoutProgramRequest workoutProgramRequest, User user) {
@@ -40,7 +30,6 @@ public class WorkoutProgramService {
                 .duration(workoutProgramRequest.getDuration())
                 .level(workoutProgramRequest.getLevel())
                 .goal(workoutProgramRequest.getGoal())
-                .createdOn(LocalDateTime.now())
                 .url(workoutProgramRequest.getUrl())
                 .build();
 

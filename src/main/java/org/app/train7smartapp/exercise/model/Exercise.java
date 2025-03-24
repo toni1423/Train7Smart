@@ -3,9 +3,8 @@ package org.app.train7smartapp.exercise.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.app.train7smartapp.user.model.User;
-import org.attoparser.dom.Text;
-//import org.app.train7smartapp.workout.model.Workout;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Builder
@@ -14,6 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "exercise")
 public class Exercise {
 
     @Id
@@ -43,16 +43,6 @@ public class Exercise {
     @Column(nullable = false)
     private String steps;
 
-
-
-
-
-
-
-
-
-    @Column
     private String videoURL;
-
 
 }

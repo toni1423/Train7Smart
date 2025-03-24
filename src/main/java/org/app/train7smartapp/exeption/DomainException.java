@@ -1,7 +1,6 @@
 package org.app.train7smartapp.exeption;
 
 import lombok.Getter;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
 @Getter

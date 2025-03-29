@@ -32,7 +32,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
                 .formLogin(form -> form
                         .loginPage("/login").permitAll()
-                        .defaultSuccessUrl("/home")
+                        .defaultSuccessUrl("/home", true)
                         .failureUrl("/login?error")
                         .permitAll())
                 .logout(logout-> logout

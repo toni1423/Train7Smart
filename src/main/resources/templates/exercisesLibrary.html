@@ -23,7 +23,7 @@
             <table class="styled-table">
                 <thead>
                 <tr>
-                    <th>Creator</th>
+                    <th>Creator Username</th>
                     <th>Name</th>
                     <th>Category</th>
                     <th>Description</th>
@@ -35,8 +35,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="exercise : ${historyList}" class="my-paintings">
-                    <td th:text="${user.username}">[Creator]</td>
+                <tr th:each="exercise : ${historyList}" class="my-paintings" th:if="${user.username == exercise.creator.username}">
+                    <td th:text="${exercise.creator.username}">[Creator Username]</td>
                     <td th:text="${exercise.name}">[Name]</td>
                     <td th:text="${exercise.category}">[Category]</td>
                     <td th:text="${exercise.description}">[Description]</td>

@@ -1,14 +1,15 @@
 package org.app.train7smartapp.web;
 
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.nutritionPlan.service.NutritionPlanService;
+import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.NutritionPlanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/nutritionPlans")
@@ -34,10 +34,9 @@ public class NutritionPlanController {
 
 
     @GetMapping("/new")
-    public ModelAndView getNewNutritionPlan(HttpSession session) {
+    public ModelAndView getNewNutritionPlan(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new-nutritionPlan");
@@ -48,10 +47,9 @@ public class NutritionPlanController {
     }
 
     @PostMapping
-    public ModelAndView createNewNutritionPlan(@Valid NutritionPlanRequest nutritionPlanRequest, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView createNewNutritionPlan(@Valid NutritionPlanRequest nutritionPlanRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         if (bindingResult.hasErrors()) {
 
@@ -69,10 +67,9 @@ public class NutritionPlanController {
 
 
     @GetMapping
-    public ModelAndView getAllNutritionPlans(HttpSession session) {
+    public ModelAndView getAllNutritionPlans(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         List<NutritionPlan> nutritionPlanLibrary = nutritionPlanService.getAllNutritionPlans();
         ModelAndView modelAndView = new ModelAndView();

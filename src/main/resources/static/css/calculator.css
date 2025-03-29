@@ -1,0 +1,78 @@
+
+body {
+    background-image: url('../images/hero-bg.jpg');
+    font-family: 'Arial', sans-serif;
+    color: #007bff;;
+    margin: 0;
+    padding: 0;
+}
+
+/* Центриране на формата */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Карта за калкулатора */
+.card {
+    background:#2d1562;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    height: 360px;
+}
+
+/* Стилове за заглавието */
+h2 {
+    text-align: center;
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Формата и полетата */
+.form-label {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* Бутон */
+.btn-primary {
+    background: #007bff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Резултат */
+.alert {
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+/* Мобилна версия */
+@media (max-width: 576px) {
+    .card {
+        padding: 20px;
+        width: 90%;
+    }
+}

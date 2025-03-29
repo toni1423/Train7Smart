@@ -4,10 +4,12 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.exercise.service.ExerciseService;
+import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.ExerciseRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -31,10 +33,9 @@ public class ExerciseController {
 
 
     @GetMapping("/new")
-    public ModelAndView getNewExercise(HttpSession session) {
+    public ModelAndView getNewExercise(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("new-exercise");
@@ -45,10 +46,9 @@ public class ExerciseController {
     }
 
     @PostMapping
-    public ModelAndView createNewExercise(@Valid ExerciseRequest exerciseRequest, BindingResult bindingResult, HttpSession session) {
+    public ModelAndView createNewExercise(@Valid ExerciseRequest exerciseRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         if (bindingResult.hasErrors()) {
 
@@ -65,10 +65,9 @@ public class ExerciseController {
     }
 
     @GetMapping("/history")
-    public ModelAndView getExerciseLibrary(HttpSession session) {
+    public ModelAndView getExerciseLibrary(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
-        UUID userId = (UUID) session.getAttribute("user_id");
-        User user = userService.getById(userId);
+        User user = userService.getById(authenticationDetails.getUserId());
 
         List<Exercise> exercisesLibrary = exerciseService.getAllExercises();
 

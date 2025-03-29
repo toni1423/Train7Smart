@@ -24,7 +24,7 @@
       <table class="styled-table">
         <thead>
         <tr>
-          <th>Creator</th>
+          <th>Creator Username</th>
           <th>Name</th>
           <th>Duration</th>
           <th>Level</th>
@@ -33,8 +33,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="workouts : ${historyList}" class="my-paintings">
-          <td th:text="${user.username}">[Creator]
+        <tr th:each="workouts : ${historyList}" class="my-paintings" th:if="${user.username == workouts.creator.username}">
+          <td th:text="${workouts.creator.username}">[Creator]
           <td th:text="${workouts.name}">[Name]</td>
           <td th:text="${workouts.duration}">[Duration]</td>
           <td th:text="${workouts.level}">[Level]</td>

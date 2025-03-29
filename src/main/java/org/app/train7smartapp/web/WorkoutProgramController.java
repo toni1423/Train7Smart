@@ -1,6 +1,5 @@
 package org.app.train7smartapp.web;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/workouts")
@@ -46,7 +44,7 @@ public class WorkoutProgramController {
     }
 
     @PostMapping
-    public ModelAndView createNewWorkout(@Valid WorkoutProgramRequest workoutProgramRequest, BindingResult bindingResult,  @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+    public ModelAndView createNewWorkout(@Valid WorkoutProgramRequest workoutProgramRequest, BindingResult bindingResult, @AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
         User user = userService.getById(authenticationDetails.getUserId());
 

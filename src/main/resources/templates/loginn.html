@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Fitness App</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('../images/hero-bg.jpg');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: white;
+            text-align: center;
+        }
+        .login-container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: #ff5733;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            font-size: 1em;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .btn {
+            text-decoration: none;
+            background: linear-gradient(135deg, #ff5733, #e64c2c);
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            display: block;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: linear-gradient(135deg, #e64c2c, #ff4500);
+            transform: scale(1.05);
+        }
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+        .forgot-password a {
+            color: #ff5733;
+            text-decoration: none;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Login</h2>
+    <form action="dashboard.html" method="POST">
+        <div class="input-group">
+            <input type="text" name="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn">Login</button>
+    </form>
+    <div class="forgot-password">
+        <a href="#">Forgot Password?</a>
+    </div>
+</div>
+</body>
+</html>

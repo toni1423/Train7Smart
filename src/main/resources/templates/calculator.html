@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <title>Калориен Калкулатор</title>
+    <link rel="stylesheet" href="/css/calculator.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>Калориен Калкулатор</h2>
+        <form action="#" th:action="@{/calories/calculate}" th:object="${userData}" method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Пол:</label>
+                <label>
+                    <select class="form-select" th:field="*{gender}">
+                        <option value="male">Мъж</option>
+                        <option value="female">Жена</option>
+                    </select>
+                </label>
+                <small th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"
+                       class="alert-warning">Name error message</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Тегло (кг):</label>
+                <label>
+                    <input type="number" class="form-control" step="0.1" th:field="*{weight}" required />
+                </label>
+                <small th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"
+                       class="alert-warning">Name error message</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Височина (см):</label>
+                <label>
+                    <input type="number" class="form-control" th:field="*{height}" required />
+                </label>
+                <small th:if="${#fields.hasErrors('height')}" th:errors="*{height}"
+                       class="alert-warning">Name error message</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Възраст:</label>
+                <label>
+                    <input type="number" class="form-control" th:field="*{age}" required />
+                </label>
+                <small th:if="${#fields.hasErrors('age')}" th:errors="*{age}"
+                       class="alert-warning">Name error message</small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ниво на активност:</label>
+                <label>
+                    <select class="form-select" th:field="*{activityLevel}">
+                        <option value="sedentary">Заседнал</option>
+                        <option value="light">Лека активност</option>
+                        <option value="moderate">Умерена активност</option>
+                        <option value="active">Активен</option>
+                        <option value="very active">Много активен</option>
+                    </select>
+                </label>
+                <small th:if="${#fields.hasErrors('activityLevel')}" th:errors="*{activityLevel}"
+                       class="alert-warning">Name error message</small>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Изчисли</button>
+            </div>
+        </form>
+
+        <div class="alert alert-success mt-3 text-center" th:if="${calories}">
+            <strong>Препоръчителен дневен прием на калории:</strong>
+            <span th:text="${calories}"></span> kcal
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

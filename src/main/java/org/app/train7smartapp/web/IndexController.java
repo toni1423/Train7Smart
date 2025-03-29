@@ -1,6 +1,5 @@
 package org.app.train7smartapp.web;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
@@ -41,7 +40,7 @@ public class IndexController {
     }
 
     @PostMapping("/register")
-    public String registrationDataProcessing(@Valid RegisterRequest registerRequest, BindingResult bindingResult, HttpSession session) {
+    public String registrationDataProcessing(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return "/register";
@@ -73,6 +72,7 @@ public class IndexController {
     public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
 
         User user = userService.getById(authenticationDetails.getUserId());
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
         modelAndView.addObject("user", user);

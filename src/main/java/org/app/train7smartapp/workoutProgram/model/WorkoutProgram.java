@@ -3,8 +3,6 @@ package org.app.train7smartapp.workoutProgram.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.app.train7smartapp.user.model.User;
-
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Builder

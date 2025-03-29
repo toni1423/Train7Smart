@@ -22,17 +22,17 @@
             <table class="styled-table">
                 <thead>
                 <tr>
-                    <th>Creator</th>
+                    <th>Creator Username</th>
                     <th>Dietary Restrictions</th>
                     <th>Macronutrient Breakdown</th>
                     <th>Daily Caloric Intake</th>
-                    <th>Created On</th>
+                    <th>NutritionPlan Url</th>
                     <!--                    <th>Delete NutritionPlan </th>-->
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="nutritionPlan : ${user.nutritionPlans}" class="my-paintings">
-                    <td th:text="${user.username}">[Creator]</td>
+                <tr th:each="nutritionPlan : ${user.nutritionPlans}" class="my-paintings" th:if="${user.username == nutritionPlan.creator.username}">
+                    <td th:text="${nutritionPlan.creator.username}">[Creator Name]</td>
                     <td th:text="${nutritionPlan.dietaryRestrictions}">[DietaryRestrictions]</td>
                     <td th:text="${nutritionPlan.macronutrientBreakdown}">[MacronutrientBreakdown]</td>
                     <td th:text="${nutritionPlan.dailyCaloricIntake}">[DailyCaloricIntake]</td>

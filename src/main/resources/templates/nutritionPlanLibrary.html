@@ -7,9 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/users.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
-
+    <link rel="stylesheet" href="/css/historyUsernameCalories.css">
     <title>NutritionPlans</title>
 </head>
 <body>
@@ -23,6 +21,7 @@
                 <thead>
                 <tr>
                     <th>Creator Username</th>
+                    <th>Name</th>
                     <th>Dietary Restrictions</th>
                     <th>Macronutrient Breakdown</th>
                     <th>Daily Caloric Intake</th>
@@ -33,6 +32,7 @@
                 <tbody>
                 <tr th:each="nutritionPlan : ${user.nutritionPlans}" class="my-paintings" th:if="${user.username == nutritionPlan.creator.username}">
                     <td th:text="${nutritionPlan.creator.username}">[Creator Name]</td>
+                    <td th:text="${nutritionPlan.name}">[Name]</td>
                     <td th:text="${nutritionPlan.dietaryRestrictions}">[DietaryRestrictions]</td>
                     <td th:text="${nutritionPlan.macronutrientBreakdown}">[MacronutrientBreakdown]</td>
                     <td th:text="${nutritionPlan.dailyCaloricIntake}">[DailyCaloricIntake]</td>
@@ -51,6 +51,9 @@
                 </tbody>
             </table>
         </div>
+        <a href="/home" class="btn btn-icon">
+            ⬅ Назад
+        </a>
     </div>
 </main>
 

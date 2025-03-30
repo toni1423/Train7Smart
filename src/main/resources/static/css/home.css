@@ -33,7 +33,7 @@
 
 .profile-name {
   font-size: 1.5rem;
-  color: #333;
+  color: aqua;
 }
 
 .profile-actions {
@@ -96,22 +96,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/*.profile-actions-button button {*/
-/*  display: flex;*/
-/*  align-items: center;*/
-/*  background: transparent;*/
-/*  border: none;*/
-/*  gap: 4px;*/
-/*  color: currentColor;*/
-/*  font-family: 'Poppins', sans-serif;*/
-/*  font-size: 14px;*/
-/*  font-weight: 300;*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  justify-content: center;*/
-/*  cursor: pointer;*/
-/*}*/
-
 .profile-actions.btn.edit {
   background: #6edef5;
   color: white;
@@ -168,104 +152,6 @@
 
 .profile-info p {
   margin: 5px 0;
-  color: #666;
-}
-
-.home-standard-wallet {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px;
-}
-
-.home-subscription {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px;
-}
-
-.default-label-box {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-weight: 300;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  border-radius: 4px;
-  width: 100%;
-}
-
-.default-label-box p {
-  background-color: rgb(255, 255, 255);
-  border-radius: 6px;
-  color: rgb(86, 80, 141);
-  border: 1px solid rgb(86, 80, 141);
-  padding: 4px 10px;
-  font-weight: 400;
-  font-size: 12px;
-  align-self: center;
-  display: inline-block;
-}
-
-.default-label-box p.active-wallet-status {
-  backdrop-filter: blur(8px);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  display: inline-block;
-  background-color: #e0f7e9;
-  color: #2e7d32;
-  box-shadow: 0 4px 8px rgba(0, 153, 51, 0.15);
-  border: 1px solid rgba(84, 227, 54, 0.6);
-}
-
-.default-label-box p.inactive-wallet-status {
-  backdrop-filter: blur(8px);
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  display: inline-block;
-  background-color: #fbe9e7;
-  color: #c62828;
-  border: 1px solid rgba(255, 103, 103, 0.6);
-  box-shadow: 0 4px 8px rgba(255, 103, 103, 0.2);
-}
-
-.wallet-balance {
-  margin-bottom: 16px;
-  padding: 20px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-self: start;
-  background: radial-gradient(circle at 90% top, #746ab0 0%, #6a61a4 10%, #605899 20%, #56508d 30%, #4c477f 40%, #423f73 50%, #383666 60%, #2e2d5a 70%, #24244d 80%, #1a1a41 90%, #101035 100%);
-  width: 100%;
-  border-radius: 6px;
-}
-
-.wallet-balance p {
-  color: #ffffff;
-  font-weight: 300;
-  font-size: 14px;
-  margin: 0;
-  margin-top: 4px;
-  margin-bottom: 10px;
-}
-
-.wallet-balance .balance {
-  margin-top: 12px;
-  font-weight: 600;
-  font-size: 36px;
 }
 
 .details-section {
@@ -285,6 +171,7 @@
   gap: 10px;
   align-items: center;
   justify-content: center;
+  color: aqua;
 }
 
 .details-section-container p {
@@ -293,39 +180,7 @@
 
 .details-section strong {
   font-weight: 500;
-  color: #333;
-}
-
-/* Table container */
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  margin: 20px 0;
-  background: #f8f9fa;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.styled-table thead {
-  background: radial-gradient(circle at 90% top, #746ab0 0%, #6a61a4 10%, #605899 20%, #56508d 30%, #4c477f 40%, #423f73 50%, #383666 60%, #2e2d5a 70%, #24244d 80%, #1a1a41 90%, #101035 100%);
-);
-  color: #ffffff;
-  text-transform: uppercase;
-  font-weight: 200;
-}
-
-.styled-table thead th {
-  padding: 12px;
-  border-bottom: 2px solid #e0e0e0;
-}
-
-.styled-table tbody td {
-  padding: 12px;
-  color: #333;
-  border-bottom: 1px solid #e0e0e0;
+  color: aqua;
 }
 
 .status {
@@ -363,4 +218,5 @@
 
 .home-profile-information a.profile-actions-button {
   margin-top: 40px;
+  color: aqua;
 }

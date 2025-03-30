@@ -3,12 +3,10 @@ package org.app.train7smartapp.nutritionPlan.service;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.nutritionPlan.repository.NutritionPlanRepository;
 import org.app.train7smartapp.user.model.User;
-import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.NutritionPlanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,7 +15,7 @@ public class NutritionPlanService {
     private final NutritionPlanRepository nutritionPlanRepository;
 
     @Autowired
-    public NutritionPlanService(NutritionPlanRepository nutritionPlanRepository, UserService userService) {
+    public NutritionPlanService(NutritionPlanRepository nutritionPlanRepository) {
         this.nutritionPlanRepository = nutritionPlanRepository;
     }
 

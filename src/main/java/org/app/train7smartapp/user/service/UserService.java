@@ -8,7 +8,6 @@ import org.app.train7smartapp.user.model.FitnessLevel;
 import org.app.train7smartapp.user.model.Role;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.repository.UserRepository;
-import org.app.train7smartapp.web.dto.LoginRequest;
 import org.app.train7smartapp.web.dto.RegisterRequest;
 import org.app.train7smartapp.web.dto.UserEditRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,11 +63,11 @@ public class UserService implements UserDetailsService {
         user.setEmail(editRequest.getEmail());
         user.setProfilePicture(editRequest.getProfilePicture());
         user.setFitnessLevel(editRequest.getFitnessLevel());
-        user.setGender(editRequest.getGender());
         user.setHeight(editRequest.getHeight());
         user.setWeight(editRequest.getWeight());
         user.setAge(editRequest.getAge());
         user.setCity(editRequest.getCity());
+        user.setGender(editRequest.getGender());
 
         userRepository.save(user);
 

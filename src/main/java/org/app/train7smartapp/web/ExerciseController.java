@@ -1,6 +1,5 @@
 package org.app.train7smartapp.web;
 
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.exercise.service.ExerciseService;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/exercises")

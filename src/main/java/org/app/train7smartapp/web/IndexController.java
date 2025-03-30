@@ -48,9 +48,6 @@ public class IndexController {
 
         User registeredUser = userService.registerNewUser(registerRequest);
 
-
-
-
         return "redirect:/login";
     }
 

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.app.train7smartapp.user.model.User;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Builder
@@ -36,8 +35,5 @@ public class NutritionPlan {
 
     @Column(nullable = false)
     private String nutritionPlanUrl;
-
-
-    //Meal Suggestions (List of meals)
 
 }

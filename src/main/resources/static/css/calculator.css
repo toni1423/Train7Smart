@@ -17,8 +17,11 @@ body {
 
 /* Карта за калкулатора */
 .card {
-    background:#2d1562;
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    background: radial-gradient(circle, rgb(135 102 255 / 47%), #12000080);
+    padding: 30px 30px 12em;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     width: 100%;
@@ -36,6 +39,9 @@ h2 {
 
 /* Формата и полетата */
 .form-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-weight: bold;
     color: #007bff;
 }
@@ -52,7 +58,9 @@ h2 {
     border: none;
     border-radius: 10px;
     padding: 10px;
+    margin-top: 30px;
     font-size: 18px;
+    text-align: center;
     font-weight: bold;
     transition: 0.3s;
 }
@@ -60,6 +68,7 @@ h2 {
 .btn-primary:hover {
     background: #0056b3;
 }
+
 
 /* Резултат */
 .alert {

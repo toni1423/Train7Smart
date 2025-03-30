@@ -21,20 +21,10 @@
         <div class="side-bar-container">
             <nav>
                 <div class="side_navbar">
-                    <div class="smart-wallet-nav-bar">
-                        <div class="smart-wallet-nav-bar-name">Train7Smart</div>
+                    <div class="train-7-smart-nav-bar">
+                        <div class="train-7-smart-nav-bar-name">Train7Smart</div>
                     </div>
                     <div class="func-block">
-                        <a href="/home" class="active">
-                            <p>Dashboard</p>
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                 viewBox="0 0 24 24">
-                            </svg>
-                        </a>
-                    </div>
-                    <div class="func-block">
-                        <span>Quick Link</span>
                         <a th:href="@{/workouts/new}">
                             <p>Workout Program</p>
                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -88,8 +78,13 @@
                                  viewBox="0 0 24 24">
                             </svg>
                         </a>
-
-
+                        <a th:href="@{/calories/history}">
+                            <p>Calories</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
                     </div>
                     <div class="func-block admin-func-block" th:if="${user.role.name() == 'ADMIN'}">
                         <span>Admin</span>
@@ -99,12 +94,6 @@
                                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                  viewBox="0 0 24 24">
                             </svg>
-                        </a>
-                        <a href="">
-                            <p>Reports</p>
-                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                 viewBox="0 0 24 24">
                         </a>
                     </div>
                     <div class="func-block">
@@ -154,10 +143,9 @@
                 <div class="details-section-container">
                     <strong>Country: </strong>
                     <p th:text="${#strings.capitalize(#strings.toLowerCase(user.country))}"></p>
-                    <!-- Bulgaria -->
                 </div>
             </div>
-            <!--      /users/{id}/profile-->
+
             <a th:href="@{'/users/' + ${user.id} + '/profile'}" class="profile-actions-button">
                 <p>Edit Profile</p>
                 <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -167,85 +155,6 @@
                 </svg>
             </a>
         </div>
-
-<!--        <div class="single-section-box home-standard-wallet">-->
-<!--            <div class="default-label-box">-->
-<!--                <p>Standard Wallet</p>-->
-<!--                <p text="Wallet"></p>-->
-<!--            </div>-->
-<!--            <div class="wallet-balance">-->
-<!--                <p text="Wallet Balance"></p>-->
-<!--                <p class="available-balance-text">Available Balance</p>-->
-<!--            </div>-->
-
-<!--            <a class="profile-actions-button" href="">-->
-<!--                <p>Open Wallets</p>-->
-<!--                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"-->
-<!--                     width="24" height="24" fill="currentColor" viewBox="0 0 24 24">-->
-<!--                    <path fill-rule="evenodd"-->
-<!--                          d="M12 14a3 3 0 0 1 3-3h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-4a3 3 0 0 1-3-3Zm3-1a1 1 0 1 0 0 2h4v-2h-4Z"-->
-<!--                          clip-rule="evenodd"></path>-->
-<!--                    <path fill-rule="evenodd"-->
-<!--                          d="M12.293 3.293a1 1 0 0 1 1.414 0L16.414 6h-2.828l-1.293-1.293a1 1 0 0 1 0-1.414ZM12.414 6 9.707 3.293a1 1 0 0 0-1.414 0L5.586 6h6.828ZM4.586 7l-.056.055A2 2 0 0 0 3 9v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2h-4a5 5 0 0 1 0-10h4a2 2 0 0 0-1.53-1.945L17.414 7H4.586Z"-->
-<!--                          clip-rule="evenodd"></path>-->
-<!--                </svg>-->
-<!--            </a>-->
-
-<!--            <div class="details-section">-->
-<!--                <div class="details-section-container">-->
-<!--                    <strong>Wallet id: </strong>-->
-<!--                    <p text="Wallet id"></p>-->
-<!--                </div>-->
-<!--                <div class="details-section-container">-->
-<!--                    <strong>Last transaction on: </strong>-->
-<!--                    <p text="Last transaction on:"></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="single-section-box home-subscription">-->
-<!--            <div class="default-label-box">-->
-<!--                <p text="SUBSCRIPTION"></p>-->
-<!--            </div>-->
-<!--            <table class="styled-table">-->
-<!--                <thead>-->
-<!--                <tr>-->
-<!--                    <th>Status</th>-->
-<!--                    <th>Period</th>-->
-<!--                    <th>Price</th>-->
-<!--                    <th>Renewal</th>-->
-<!--                </tr>-->
-<!--                </thead>-->
-<!--                <tbody>-->
-<!--                <tr>-->
-<!--                    <td><span class="status active">ACTIVE</span></td>-->
-<!--                    <td><span class="status completed">COMPLETED</span></td>-->
-<!--                    <td><span class="status terminated">TERMINATED</span></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                    <td></td>-->
-<!--                </tr>-->
-<!--                </tbody>-->
-<!--            </table>-->
-<!--            <a class="profile-actions-button" href="">-->
-<!--                <p>Change</p>-->
-<!--                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"-->
-<!--                     width="24" height="24" fill="currentColor" viewBox="0 0 24 24">-->
-<!--                    <path fill-rule="evenodd"-->
-<!--                          d="M20.337 3.664c.213.212.354.486.404.782.294 1.711.657 5.195-.906 6.76-1.77 1.768-8.485 5.517-10.611 6.683a.987.987 0 0 1-1.176-.173l-.882-.88-.877-.884a.988.988 0 0 1-.173-1.177c1.165-2.126 4.913-8.841 6.682-10.611 1.562-1.563 5.046-1.198 6.757-.904.296.05.57.191.782.404ZM5.407 7.576l4-.341-2.69 4.48-2.857-.334a.996.996 0 0 1-.565-1.694l2.112-2.111Zm11.357 7.02-.34 4-2.111 2.113a.996.996 0 0 1-1.69-.565l-.422-2.807 4.563-2.74Zm.84-6.21a1.99 1.99 0 1 1-3.98 0 1.99 1.99 0 0 1 3.98 0Z"-->
-<!--                          clip-rule="evenodd"></path>-->
-<!--                </svg>-->
-<!--            </a>-->
-<!--            <div class="details-section">-->
-<!--                <div class="details-section-container">-->
-<!--                    <strong>Subscription id: </strong>-->
-<!--                    <p text="Subscription id: "></p>-->
-<!--                </div>-->
-<!--                <div class="details-section-container">-->
-<!--                    <strong>Subscribe until: </strong>-->
-<!--                    <p text="Subscribe until: "></p>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 </main>
 <th:block th:insert="fragments/footer :: footer"></th:block>

@@ -4,13 +4,15 @@
 
 .side-bar-container {
   text-align: center;
-  background-color: #374872;
+  background: radial-gradient(circle, rgb(135 102 255 / 47%), #12000080);
+  font-size: 1.5em;
   width: 240px;
   height: 100%;
   border-radius: 12px;
   padding: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
   font-family: 'Poppins', sans-serif;
+  color: aqua;
 }
 
 .side-bar-container nav {
@@ -33,7 +35,7 @@
   font-weight: 300;
   margin-bottom: 10px;
   display: block;
-  background: radial-gradient(ellipse at top, #746ab0 0%, #a095e6 10%, #faf9f9 20%, #c5bfff 30%, #978ef1 40%, #7871f6 50%, #817cff 60%, #8eafe9 70%, #a1a1ff 80%, #a8a8ff 90%, #6d78f3 100%);
+  background: radial-gradient(ellipse at top, #746ab0 0%, #a095e6 10%, #faf9f9 20%, #c5bfff 30%, #978ef1 40%, #7871f6 50%, #ff3131 60%, #8eafe9 70%, #a1a1ff 80%, #a8a8ff 90%, #6d78f3 100%);
   background-size: 200%;
   background-clip: text;
   -webkit-background-clip: text;
@@ -47,7 +49,7 @@
   text-decoration: none;
   font-weight: 300;
   font-size: 16px;
-  color: #333333;
+  color: aqua;
   padding: 10px 12px;
   border-radius: 8px; /* Rounded buttons */
   margin-bottom: 8px; /* Space between links */

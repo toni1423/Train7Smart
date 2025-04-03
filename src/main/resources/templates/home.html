@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/css/nav-side-bar.css">
+    <link rel="stylesheet" type="text/css" href="/css/home-common.css">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+    <title>Home</title>
+</head>
+<body>
+<nav>
+
+</nav>
+<main>
+    <div class="nav-bar">
+        <div class="side-bar-container">
+            <nav>
+                <div class="side_navbar">
+                    <div class="train-7-smart-nav-bar">
+                        <div class="train-7-smart-nav-bar-name">Train7Smart</div>
+                    </div>
+                    <div class="func-block">
+                        <a th:href="@{/workouts/new}">
+                            <p>Workout Program</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                        <a th:href="@{/exercises/new}">
+                            <p>Exercise</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                        <a th:href="@{/nutritionPlans/new}">
+                            <p>NutritionPlan</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+
+                        <a th:href="@{/calories/form}">
+                            <p>CalorieCalculator</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="func-block">
+                        <span>Libraries</span>
+                        <a th:href="@{/workouts/history}">
+                            <p>Workout Programs</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                        <a th:href="@{/nutritionPlans}">
+                            <p>NutritionPlans</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                        <a th:href="@{/exercises/history}">
+                            <p>Exercises</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                        <a th:href="@{/calories/history}">
+                            <p>Calories</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="func-block admin-func-block" th:if="${user.role.name() == 'ADMIN'}">
+                        <span>Admin</span>
+                        <a th:href="@{/users}">
+                            <p>Users</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="func-block">
+                        <a class="logout" href="/logout">
+                            <p>Logout</p>
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                 viewBox="0 0 24 24">
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="home-section">
+        <div class="single-section-box home-profile-information">
+            <div class="profile-header">
+                <img th:src="${#strings.isEmpty(user.profilePicture) ? 'https://icons.veryicon.com/png/o/miscellaneous/user-avatar/user-avatar-male-5.png' : user.profilePicture}"
+                     alt="Profile Picture" class="profile-avatar">
+                <h2 class="profile-name" th:text="${user.username}"></h2>
+                <div class="profile-status-role-container">
+                    <p th:if="${user.isActive()}" class="active-profile">ACTIVE</p>
+                    <p th:if="${!user.isActive()}" class="inactive-profile">INACTIVE</p>
+                </div>
+                <div class="details-section">
+                    <div class="details-section-container">
+                        <strong>User id: </strong>
+                        <p th:text="${user.id}"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="details-section-container">
+                    <strong>Username: </strong>
+                    <p th:text="${user.username}"></p>
+                </div>
+                <div class="details-section-container">
+                    <strong>Email: </strong>
+                    <p th:text="${#strings.isEmpty(user.email) ? 'Edit your profile and add email' : user.email}"></p>
+                </div>
+                <div class="details-section-container">
+                    <strong>Joined: </strong>
+                    <p th:text="${#temporals.format(user.createdOn, 'dd MMM YYYY HH:mm')}"></p>
+                </div>
+                <div class="details-section-container">
+                    <strong>Country: </strong>
+                    <p th:text="${#strings.capitalize(#strings.toLowerCase(user.country))}"></p>
+                </div>
+            </div>
+
+            <a th:href="@{'/users/' + ${user.id} + '/profile'}" class="profile-actions-button">
+                <p>Edit Profile</p>
+                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M16 4h4m0 0v4m0-4-5 5M8 20H4m0 0v-4m0 4 5-5"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</main>
+<th:block th:insert="fragments/footer :: footer"></th:block>
+</body>
+</html>

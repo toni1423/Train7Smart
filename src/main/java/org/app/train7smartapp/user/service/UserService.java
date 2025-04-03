@@ -124,11 +124,11 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
-    public void deleteUserAccount(UUID id) {
+    public void deleteUserAccountById(UUID id) {
 
         User user = getById(id);
 
-        userRepository.delete(user);
+        userRepository.deleteById(id);
 
     }
 

@@ -1,30 +1,26 @@
-package org.app.train7smartapp.web;
 
-import org.app.train7smartapp.calorieCalculator.service.CalorieServiceClient;
-import org.app.train7smartapp.web.dto.CalorieRequest;
-import org.app.train7smartapp.web.dto.CalorieResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+package org.app.train7smartapp.web;
+import org.app.train7smartapp.calorieCalculator.client.CalculatorClient;
+import org.app.train7smartapp.calorieCalculator.client.dto.CalorieRequest;
+import org.app.train7smartapp.calorieCalculator.client.dto.CalorieResponse;
+import org.app.train7smartapp.calorieCalculator.service.CalculatorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/calories")
 public class CalorieController {
 
-    private final CalorieServiceClient calorieServiceClient;
+    private final CalculatorService calorieService;
 
-    @Autowired
-    public CalorieController(CalorieServiceClient calorieServiceClient) {
-        this.calorieServiceClient = calorieServiceClient;
+    public CalorieController(CalculatorService calorieService) {
+        this.calorieService = calorieService;
     }
 
     @PostMapping("/calculate")
     public String calculateCalories(@ModelAttribute CalorieRequest request, Model model) {
-        CalorieResponse response = calorieServiceClient.calculateCalories(request);
+        CalorieResponse response = calorieService.calculateCalories(request);
         model.addAttribute("calories", response.getCalories());
-        return "calorie-result";
+        return "result";
     }
 }

@@ -33,7 +33,7 @@
                 </div>
                 <div class="details-section-container">
                     <strong>Last profile update: </strong>
-                    <p th:text="${user.updatedOn}"></p>
+                    <p th:text="${#temporals.format(user.updatedOn, 'dd MMM yyyy HH:mm')}">[user updated on]</p>
                 </div>
             </div>
 
@@ -49,11 +49,18 @@
                 <label for="email">Email</label>
                 <input type="text" id="email" placeholder="Email Address" th:field="*{email}">
 
-                <!--        <label for="phoneNumber">Phone Number</label>-->
-                <!--        <input type="text" id="phoneNumber" placeholder="Phone Number" th:field="*{phoneNumber}">-->
+                <label for="fitnessLevel">FitnessLevel</label>
+                <select name="fitnessLevel" id="fitnessLevel" th:field="*{fitnessLevel}">
+                    <option th:each="fitnessLevel : ${T(org.app.train7smartapp.user.model.FitnessLevel).values()}"
+                            th:value="${fitnessLevel}"
+                            th:text="${#strings.capitalize(#strings.toLowerCase(fitnessLevel))}"></option>
+                </select>
 
                 <label for="age">Age</label>
                 <input type="text" id="age" placeholder="Age" th:field="*{age}">
+
+                <label for="profilePicture">Profile Picture URL</label>
+                <input type="text" id="profilePicture" placeholder="Image Link" th:field="*{profilePicture}">
 
                 <label for="city">City</label>
                 <input type="text" id="city" placeholder="City" th:field="*{city}">
@@ -65,8 +72,11 @@
                             th:text="${#strings.capitalize(#strings.toLowerCase(gender))}"></option>
                 </select>
 
-                <label for="profilePicture">Profile Picture URL</label>
-                <input type="text" id="profilePicture" placeholder="Image Link" th:field="*{profilePicture}">
+                <label for="height">Height</label>
+                <input type="text" id="height" placeholder="Height" th:field="*{height}">
+
+                <label for="weight">Weight</label>
+                <input type="text" id="weight" placeholder="Weight" th:field="*{weight}">
 
                 <button class="profile-actions-button">
                     <p>Save</p>
@@ -75,14 +85,17 @@
                               stroke-linejoin="round"></path>
                     </svg>
                 </button>
-
-                <button class="profile-actions-button">
-                    <p>Dashboard</p>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    </svg>
-                </button>
-
             </form>
+            <div class="func-block">
+                <a href="/home" class="active">
+                    <p>Dashboard</p>
+                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                              d="M5 7h14M5 12h14M5 17h14"></path>
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
 </main>

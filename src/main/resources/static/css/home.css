@@ -76,6 +76,27 @@
   text-decoration: none;
   z-index: 2;
 }
+/**/
+.buttons-info {
+  display: flex;
+  justify-content: end;
+  gap: 5px;
+  padding-right: 1em;
+  flex: 1 0 20%;
+}
+
+button {
+  background-color: rgb(74, 106, 124);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background-color: rgb(39, 63, 77);
+}
+/**/
 
 .profile-actions-button p {
   margin-top: 10px;

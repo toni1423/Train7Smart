@@ -24,10 +24,13 @@ public class UserEditRequest {
     @Email
     private String email;
 
+    private FitnessLevel fitnessLevel;
+
+    @Positive
+    private int age;
+
     @URL
     private String profilePicture;
-
-    private FitnessLevel fitnessLevel;
 
     private Gender gender;
 
@@ -36,9 +39,6 @@ public class UserEditRequest {
 
     @Positive
     private String weight;
-
-    @Positive
-    private int age;
 
     @NotBlank
     private String city;

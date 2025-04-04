@@ -10,18 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.UUID;
 
 @FeignClient(name = "calorieCalculator-svc", url = "http://localhost:8081/api/calories")
 public interface CalculatorClient {
 
-
-
     @PostMapping("/calculate")
     ResponseEntity<CalorieRecord> calculateAndSave(@RequestBody CalorieRequest request);
 
-    @GetMapping("/records")
-    ResponseEntity<List<CalorieRecord>> getAllRecords();
-
-    @GetMapping("/records/{id}")
-    ResponseEntity<CalorieRecord> getRecordById(@PathVariable("id") Long id);
+    @GetMapping("/records/user/{userId}")
+    ResponseEntity<List<CalorieRecord>> getRecordsByUser(@PathVariable("userId") UUID userId);
 }

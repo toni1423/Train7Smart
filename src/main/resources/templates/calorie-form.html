@@ -1,20 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Calorie Calculator</title>
+    <meta charset="UTF-8">
+    <title>Калориен Калкулатор</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+        .form-container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-<h2>Calorie Calculator</h2>
-<form th:action="@{/calories/submit}" method="post" th:object="${calorieRequest}">
-    <input type="number" th:field="*{age}" placeholder="Възраст" required />
-    <input type="number" th:field="*{weight}" placeholder="Тегло (кг)" required />
-    <input type="number" th:field="*{height}" placeholder="Ръст (см)" required />
-    <select th:field="*{activityLevel}">
-        <option value="sedentary">Слаба активност</option>
-        <option value="moderate">Средна активност</option>
-        <option value="active">Висока активност</option>
-    </select>
-    <button type="submit">Изчисли</button>
-</form>
+<div class="form-container">
+    <h2>Калориен Калкулатор</h2>
+    <form th:action="@{/calories/submit}" method="post" th:object="${calorieRequest}">
+        <!-- 🔒 Скрито поле за потребителя -->
+        <input type="hidden" th:field="*{userId}" />
+
+        <label>
+            <input type="number" th:field="*{age}" placeholder="Възраст" required />
+        </label>
+        <label>
+            <input type="number" th:field="*{weight}" placeholder="Тегло (кг)" required />
+        </label>
+        <label>
+            <input type="number" th:field="*{height}" placeholder="Ръст (см)" required />
+        </label>
+
+        <label>
+            <select th:field="*{gender}" required>
+                <option value="" disabled selected>-- Избери пол --</option>
+                <option value="sedentary">Мъж</option>
+                <option value="moderate">Жена</option>
+            </select>
+        </label>
+
+        <label>
+            <select th:field="*{activityLevel}" required>
+                <option value="" disabled selected>-- Избери активност --</option>
+                <option value="sedentary">Слаба активност</option>
+                <option value="moderate">Средна активност</option>
+                <option value="active">Висока активност</option>
+            </select>
+        </label>
+
+        <button type="submit">Изчисли</button>
+    </form>
+</div>
 </body>
 </html>

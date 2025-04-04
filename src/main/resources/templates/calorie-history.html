@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>История на Калкулациите</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+    .history-container {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 900px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 14px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #28a745;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+<div class="history-container">
+  <h2>История на Калкулациите</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Възраст</th>
+      <th>Тегло (кг)</th>
+      <th>Ръст (см)</th>
+      <th>Пол</th>
+      <th>Активност</th>
+      <th>Калории</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="record : ${records}">
+      <td th:text="${record.age}"></td>
+      <td th:text="${record.weight}"></td>
+      <td th:text="${record.height}"></td>
+      <td th:text="${record.gender}"></td>
+      <td th:text="${record.activityLevel}"></td>
+      <td th:text="${record.calories} + ' kcal'"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

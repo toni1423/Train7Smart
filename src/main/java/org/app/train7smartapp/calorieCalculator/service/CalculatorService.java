@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CalculatorService {
@@ -23,12 +24,10 @@ public class CalculatorService {
         return calculatorClient.calculateAndSave(request).getBody();
     }
 
-    public List<CalorieRecord> fetchAllRecords() {
-        return calculatorClient.getAllRecords().getBody();
+    public List<CalorieRecord> getUserCalorieHistory(UUID userId) {
+        return calculatorClient.getRecordsByUser(userId).getBody();
     }
 
-    public CalorieRecord fetchById(Long id) {
-        return calculatorClient.getRecordById(id).getBody();
-    }
+
 
 }

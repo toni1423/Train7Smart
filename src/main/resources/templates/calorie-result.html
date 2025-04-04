@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="Eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Резултат</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+        .result-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        .calories {
+            font-size: 32px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="result-card">
+    <h2>Изчислени Калории</h2>
+    <div class="calories" th:text="${result.calories} + ' kcal'"></div>
+</div>
+</body>
+</html>

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class CalorieController {
@@ -18,22 +20,25 @@ public class CalorieController {
         this.calorieService = calorieService;
     }
 
-    @GetMapping("/calories/form")
-    public String showForm(Model model) {
-        model.addAttribute("calorieRequest", new CalorieRequest());
-        return "calorie-form"; // Thymeleaf форма
+    @GetMapping("/calories/form/{userId}")
+    public String showForm(@PathVariable UUID userId, Model model) {
+        CalorieRequest request = new CalorieRequest();
+        request.setUserId(userId);
+        model.addAttribute("calorieRequest", request);
+        return "calorie-form";
     }
 
     @PostMapping("/calories/submit")
     public String submitForm(@ModelAttribute CalorieRequest request, Model model) {
-        CalorieRecord record = calorieService.sendCalculation(request);
-        model.addAttribute("result", record);
-        return "calorie-result"; // Thymeleaf резултат
+        CalorieRecord result = calorieService.sendCalculation(request);
+        model.addAttribute("result", result);
+        return "calorie-result";
     }
 
-    @GetMapping("/calories/history")
-    public String showHistory(Model model) {
-        model.addAttribute("records", calorieService.fetchAllRecords());
-        return "calorie-history"; // История на заявките
+    @GetMapping("/calories/user/{userId}/history")
+    public String userHistory(@PathVariable UUID userId, Model model) {
+        List<CalorieRecord> records = calorieService.getUserCalorieHistory(userId);
+        model.addAttribute("records", records);
+        return "calorie-history";
     }
 }

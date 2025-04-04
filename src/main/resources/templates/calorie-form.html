@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calorie Calculator</title>
+</head>
+<body>
+<h2>Calorie Calculator</h2>
+<form th:action="@{/calories/submit}" method="post" th:object="${calorieRequest}">
+    <input type="number" th:field="*{age}" placeholder="Възраст" required />
+    <input type="number" th:field="*{weight}" placeholder="Тегло (кг)" required />
+    <input type="number" th:field="*{height}" placeholder="Ръст (см)" required />
+    <select th:field="*{activityLevel}">
+        <option value="sedentary">Слаба активност</option>
+        <option value="moderate">Средна активност</option>
+        <option value="active">Висока активност</option>
+    </select>
+    <button type="submit">Изчисли</button>
+</form>
+</body>
+</html>

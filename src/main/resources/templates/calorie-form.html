@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ENG">
 <head>
     <meta charset="UTF-8">
     <title>Калориен Калкулатор</title>
@@ -11,6 +11,7 @@
             justify-content: center;
             padding: 40px;
         }
+
         .form-container {
             background: white;
             padding: 30px 40px;
@@ -19,11 +20,13 @@
             width: 100%;
             max-width: 500px;
         }
+
         h2 {
             text-align: center;
             margin-bottom: 25px;
             color: #333;
         }
+
         input, select {
             width: 100%;
             padding: 12px;
@@ -32,6 +35,7 @@
             border-radius: 10px;
             box-sizing: border-box;
         }
+
         button {
             background-color: #28a745;
             color: white;
@@ -42,6 +46,7 @@
             font-size: 16px;
             cursor: pointer;
         }
+
         button:hover {
             background-color: #218838;
         }
@@ -49,39 +54,38 @@
 </head>
 <body>
 <div class="form-container">
-    <h2>Калориен Калкулатор</h2>
+    <h2>CalorieCalculator</h2>
     <form th:action="@{/calories/submit}" method="post" th:object="${calorieRequest}">
-        <!-- 🔒 Скрито поле за потребителя -->
-        <input type="hidden" th:field="*{userId}" />
+
+        <input type="hidden" th:field="*{userId}"/>
 
         <label>
-            <input type="number" th:field="*{age}" placeholder="Възраст" required />
+            <input type="number" th:field="*{age}" placeholder="Age" required/>
         </label>
         <label>
-            <input type="number" th:field="*{weight}" placeholder="Тегло (кг)" required />
+            <input type="number" th:field="*{weight}" placeholder="Weight (kg)" required/>
         </label>
         <label>
-            <input type="number" th:field="*{height}" placeholder="Ръст (см)" required />
+            <input type="number" th:field="*{height}" placeholder="Height (cm)" required/>
         </label>
 
         <label>
             <select th:field="*{gender}" required>
-                <option value="" disabled selected>-- Избери пол --</option>
-                <option value="sedentary">Мъж</option>
-                <option value="moderate">Жена</option>
+                <option value="" disabled selected>-- choose gender --</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
             </select>
         </label>
 
         <label>
             <select th:field="*{activityLevel}" required>
-                <option value="" disabled selected>-- Избери активност --</option>
-                <option value="sedentary">Слаба активност</option>
-                <option value="moderate">Средна активност</option>
-                <option value="active">Висока активност</option>
+                <option value="" disabled selected>-- choose activityLevel --</option>
+                <option value="Sedentary">Sedentary</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Active">Active</option>
             </select>
         </label>
-
-        <button type="submit">Изчисли</button>
+        <button type="submit">Calculate</button>
     </form>
 </div>
 </body>

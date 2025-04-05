@@ -1,6 +1,6 @@
 package org.app.train7smartapp.calorieCalculator.client;
 
-import org.app.train7smartapp.calorieCalculator.client.dto.CalorieRecord;
+import org.app.train7smartapp.calorieCalculator.client.dto.CalorieCalculation;
 import org.app.train7smartapp.calorieCalculator.client.dto.CalorieRequest;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,11 @@ import java.util.UUID;
 public interface CalculatorClient {
 
     @PostMapping("/calculate")
-    ResponseEntity<CalorieRecord> calculateAndSave(@RequestBody CalorieRequest request);
+    ResponseEntity<CalorieCalculation> calculateAndSave(@RequestBody CalorieRequest request);
 
     @GetMapping("/records/user/{userId}")
-    ResponseEntity<List<CalorieRecord>> getRecordsByUser(@PathVariable("userId") UUID userId);
+    ResponseEntity<List<CalorieCalculation>> getRecordsByUser(@PathVariable("userId") UUID userId);
+
+    @GetMapping("/calories/user/{userId}/history")
+    List<CalorieCalculation> getHistoryByUserId(@PathVariable UUID userId);
 }

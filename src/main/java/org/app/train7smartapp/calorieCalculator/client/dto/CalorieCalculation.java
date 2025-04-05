@@ -2,13 +2,13 @@ package org.app.train7smartapp.calorieCalculator.client.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
-public class CalorieRequest {
+public class CalorieCalculation {
 
     @NotNull
     private UUID userId;
@@ -22,6 +22,8 @@ public class CalorieRequest {
     @NotNull
     private int age;
 
+    private double calories;
+
     @NotNull
     private String gender;
 
@@ -30,4 +32,5 @@ public class CalorieRequest {
     private String activityLevel;
 
     private LocalDateTime calculatedAt;
+
 }

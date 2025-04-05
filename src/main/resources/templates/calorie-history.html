@@ -1,72 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ENG">
 <head>
-  <meta charset="UTF-8">
-  <title>История на Калкулациите</title>
+  <title>Calculation history</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f5f5;
-      padding: 40px;
-      display: flex;
-      justify-content: center;
-    }
-    .history-container {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-      width: 90%;
-      max-width: 900px;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
+      font-family: Arial,serif;
+      background-color: #f8f8f8;
     }
     table {
-      width: 100%;
+      width: 80%;
+      margin: 30px auto;
       border-collapse: collapse;
+      box-shadow: 0 0 10px #ccc;
     }
     th, td {
-      padding: 14px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
+      padding: 12px;
+      border: 1px solid #ddd;
     }
     th {
-      background: #28a745;
-      color: white;
-    }
-    tr:hover {
-      background: #f1f1f1;
+      background-color: #eee;
     }
   </style>
 </head>
 <body>
-<div class="history-container">
-  <h2>История на Калкулациите</h2>
-  <table>
-    <thead>
-    <tr>
-      <th>Дата</th>
-      <th>Възраст</th>
-      <th>Тегло (кг)</th>
-      <th>Ръст (см)</th>
-      <th>Пол</th>
-      <th>Активност</th>
-      <th>Калории</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="record : ${records}">
-      <td th:text="${record.age}"></td>
-      <td th:text="${record.weight}"></td>
-      <td th:text="${record.height}"></td>
-      <td th:text="${record.gender}"></td>
-      <td th:text="${record.activityLevel}"></td>
-      <td th:text="${record.calories} + ' kcal'"></td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+<h2 style="text-align:center;">Calculation history</h2>
+<table>
+  <tr>
+    <th>User ID</th>
+    <th>Calories</th>
+    <th>Weight</th>
+    <th>Height</th>
+    <th>Years</th>
+    <th>Gender</th>
+    <th>Activity</th>
+    <th>Date</th>
+  </tr>
+  <tr th:each="entry : ${history}">
+    <td th:text="${entry.userId}"></td>
+    <td th:text="${entry.calories}"></td>
+    <td th:text="${entry.weight}"></td>
+    <td th:text="${entry.height}"></td>
+    <td th:text="${entry.age}"></td>
+    <td th:text="${entry.gender}"></td>
+    <td th:text="${entry.activityLevel}"></td>
+    <td th:text="${#temporals.format(entry.calculatedAt, 'dd.MM.yyyy HH:mm')}"></td>
+  </tr>
+</table>
 </body>
 </html>

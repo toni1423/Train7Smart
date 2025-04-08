@@ -1,8 +1,10 @@
 package org.app.train7smartapp.user.service;
 
 import jakarta.transaction.Transactional;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.app.train7smartapp.exeption.DomainException;
+import org.app.train7smartapp.exeption.UsernameAlreadyExistException;
 import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.FitnessLevel;
 import org.app.train7smartapp.user.model.Role;
@@ -29,6 +31,7 @@ public class UserService implements UserDetailsService {
 
 
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
@@ -41,9 +44,9 @@ public class UserService implements UserDetailsService {
     @Transactional
     public User registerNewUser(RegisterRequest registerRequest) {
 
-        Optional<User> optionalUser = userRepository.findByUsername(registerRequest.getUsername());
-        if (optionalUser.isPresent()) {
-            throw new DomainException("User with username=[%s] already exist.".formatted(registerRequest.getUsername()), HttpStatus.BAD_REQUEST);
+        Optional<User> optionUser = userRepository.findByUsername(registerRequest.getUsername());
+        if (optionUser.isPresent()) {
+            throw new UsernameAlreadyExistException("User with username=[%s] already exist.".formatted(registerRequest.getUsername()));
         }
 
         User user = userRepository.save(initializeUser(registerRequest));
@@ -80,6 +83,11 @@ public class UserService implements UserDetailsService {
                 .findById(userId)
                 .orElseThrow(() -> new DomainException("User with id [%s] does not exist.".formatted(userId), HttpStatus.BAD_REQUEST));
 
+    }
+
+    public void deleteUser(UUID id) {
+        User user = getById(id); // за да хвърли изключение, ако няма такъв
+        userRepository.delete(user);
     }
 
     public List<User> getAllUsers() {
@@ -140,4 +148,5 @@ public class UserService implements UserDetailsService {
         return new AuthenticationDetails(user.getId(), user.getUsername(), user.getPassword(), user.getRole(), user.isActive());
 
     }
+
 }

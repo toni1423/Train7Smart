@@ -1,6 +1,7 @@
 package org.app.train7smartapp.web;
 
 import jakarta.validation.Valid;
+import org.app.train7smartapp.exeption.UsernameAlreadyExistException;
 import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
@@ -46,7 +47,7 @@ public class IndexController {
             return "/register";
         }
 
-        User registeredUser = userService.registerNewUser(registerRequest);
+        userService.registerNewUser(registerRequest);
 
         return "redirect:/login";
     }

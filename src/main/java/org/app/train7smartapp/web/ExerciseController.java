@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/exercises")
@@ -77,4 +78,11 @@ public class ExerciseController {
         return modelAndView;
     }
 
+    @DeleteMapping("/{id}")
+    public String deleteNutritionPlan(@PathVariable UUID id) {
+
+        exerciseService.deleteExerciseById(id);
+
+        return "redirect:/exercises/history";
+    }
 }

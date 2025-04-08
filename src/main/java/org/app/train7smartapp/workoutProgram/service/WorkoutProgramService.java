@@ -8,6 +8,7 @@ import org.app.train7smartapp.workoutProgram.repository.WorkoutProgramsRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class WorkoutProgramService {
@@ -38,5 +39,10 @@ public class WorkoutProgramService {
 
         return workoutProgramsRepository.findAll();
 
+    }
+
+    public void deleteWorkoutProgramById(UUID id) {
+
+        workoutProgramsRepository.deleteById(id);
     }
 }

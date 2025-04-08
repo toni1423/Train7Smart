@@ -1,5 +1,6 @@
 package org.app.train7smartapp.web;
 
+import org.app.train7smartapp.exeption.DomainException;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
 import org.app.train7smartapp.web.dto.UserEditRequest;
@@ -8,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
@@ -72,12 +74,15 @@ public class UserController {
 
         return "redirect:/users";
     }
-    @DeleteMapping("/{id}/delete-user")
-    public String deleteUser(@PathVariable UUID id) {
 
-        userService.deleteUserAccountById(id);
-
+    @PostMapping("/delete/{id}")
+    public String deleteUser(@PathVariable UUID id, RedirectAttributes redirectAttributes) {
+        try {
+            userService.deleteUser(id);
+            redirectAttributes.addFlashAttribute("successMessage", "User deleted successfully.");
+        } catch (DomainException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "User not found.");
+        }
         return "redirect:/users";
-
     }
 }

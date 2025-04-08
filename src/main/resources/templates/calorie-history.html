@@ -1,50 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ENG">
 <head>
-  <title>Calculation history</title>
-  <style>
-    body {
-      font-family: Arial,serif;
-      background-color: #f8f8f8;
-    }
-    table {
-      width: 80%;
-      margin: 30px auto;
-      border-collapse: collapse;
-      box-shadow: 0 0 10px #ccc;
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
-    }
-    th {
-      background-color: #eee;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/histories.css">
+    <title>CalorieCalculator</title>
 </head>
 <body>
-<h2 style="text-align:center;">Calculation history</h2>
-<table>
-  <tr>
-    <th>User ID</th>
-    <th>Calories</th>
-    <th>Weight</th>
-    <th>Height</th>
-    <th>Years</th>
-    <th>Gender</th>
-    <th>Activity</th>
-    <th>Date</th>
-  </tr>
-  <tr th:each="entry : ${history}">
-    <td th:text="${entry.userId}"></td>
-    <td th:text="${entry.calories}"></td>
-    <td th:text="${entry.weight}"></td>
-    <td th:text="${entry.height}"></td>
-    <td th:text="${entry.age}"></td>
-    <td th:text="${entry.gender}"></td>
-    <td th:text="${entry.activityLevel}"></td>
-    <td th:text="${#temporals.format(entry.calculatedAt, 'dd.MM.yyyy HH:mm')}"></td>
-  </tr>
-</table>
+<main>
+    <div class="home-section">
+        <div class="single-section-box subscriptions-container">
+            <table class="styled-table">
+                <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Calories</th>
+                    <th>Weight</th>
+                    <th>Height</th>
+                    <th>Years</th>
+                    <th>Gender</th>
+                    <th>Activity</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="entry : ${history}">
+                    <td th:text="${entry.userId}"></td>
+                    <td th:text="${entry.calories}"></td>
+                    <td th:text="${entry.weight}"></td>
+                    <td th:text="${entry.height}"></td>
+                    <td th:text="${entry.age}"></td>
+                    <td th:text="${entry.gender}"></td>
+                    <td th:text="${entry.activityLevel}"></td>
+                    <td th:text="${#temporals.format(entry.calculatedAt, 'dd.MM.yyyy HH:mm')}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <a href="/home" class="btn btn-icon">
+            ⬅ Back to Home
+        </a>
+    </div>
+</main>
 </body>
 </html>

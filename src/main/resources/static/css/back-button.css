@@ -1,0 +1,24 @@
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Увеличаваме padding за по-голям размер */
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b; /* Променяме цвета при ховър */
+}
+
+.btn-delete svg {
+    width: 18px; /* Увеличаваме иконата */
+    height: 18px;
+}

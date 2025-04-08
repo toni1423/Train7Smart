@@ -1,0 +1,39 @@
+.func-block {
+    text-align: center;
+    margin-top: 13px;
+    display: inline-block;
+}
+
+/* Стилове за линка (бутон) */
+.func-block a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #28a745; /* Зелен фон */
+    color: white;
+    padding: 14px;
+    width: 472px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none; /* Премахваме подчертаването на линка */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover ефект за линка */
+.func-block a:hover {
+    background-color: #218838; /* По-тъмен зелен при hover */
+}
+
+/* Стилове за иконата */
+.func-block a .fa {
+    margin-right: 10px;
+    font-size: 20px; /* Размер на иконата */
+}
+
+/* Стилове за текста */
+.func-block p {
+    margin: 0;
+    font-weight: bold;
+}

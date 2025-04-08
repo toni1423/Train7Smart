@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/workouts")
@@ -78,32 +79,12 @@ public class WorkoutProgramController {
         return modelAndView;
     }
 
-//    @DeleteMapping("/{id}")
-//    public String deleteWorkout(@PathVariable UUID id) {
-//
-//        workoutProgramService.deleteWorkoutProgram(id);
-//
-//        return "redirect:/home";
-//    }
-//
-//    @PostMapping("/favourites/{id}")
-//    public String makeFavouriteWorkout(@PathVariable UUID id, HttpSession session) {
-//
-//        UUID userId = (UUID) session.getAttribute("user_id");
-//        User user = userService.getById(userId);
-//
-//        workoutProgramService.createFavouriteWorkoutProgramById(id, user);
-//
-//        return "redirect:/home";
-//    }
-//
-//
-//    @DeleteMapping("/favourites/{id}")
-//    public String deleteFavouriteWorkout(@PathVariable UUID id) {
-//
-//        workoutProgramService.deleteFavoriteWorkoutProgramById(id);
-//
-//        return "redirect:/home";
-//    }
+    @DeleteMapping("/{id}")
+    public String deleteWorkoutProgram(@PathVariable UUID id) {
+        workoutProgramService.deleteWorkoutProgramById(id);
+
+        // Пренасочване към страницата с всички тренировки (или друга страница)
+        return "redirect:/workouts/history";  // или "/workouts", ако искаш да останеш на същата страница
+    }
 
 }

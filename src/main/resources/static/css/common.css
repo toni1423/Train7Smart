@@ -86,3 +86,58 @@ p.alert-warning {
   -webkit-text-fill-color: transparent;
   margin: 5px 0 0;
 }
+
+/* Общ стил за input и select полета */
+input[type="text"], select {
+  width: 100%; /* Взема цялата ширина на контейнера */
+  padding: 12px; /* Падинг за равен размер на полетата */
+  font-size: 16px; /* Размер на шрифта */
+  border: 1px solid #ccc; /* Светло сив бордюр */
+  border-radius: 5px; /* Заоблени ъгли */
+  margin-bottom: 15px; /* Разстояние между полетата */
+  box-sizing: border-box; /* Включва падинга и бордюра в ширината */
+}
+
+/* Стил за бутон */
+.profile-actions-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.profile-actions-button:hover {
+  background-color: #45a049;
+}
+
+.func-block a {
+  color: #007BFF;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.func-block a:hover {
+  text-decoration: underline;
+}
+
+/* За да осигурим, че лейбълите са в същия ред */
+.label-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.label-holder label {
+  font-size: 18px;
+}

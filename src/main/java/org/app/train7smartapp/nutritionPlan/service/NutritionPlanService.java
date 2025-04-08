@@ -1,13 +1,16 @@
 package org.app.train7smartapp.nutritionPlan.service;
 
+import org.app.train7smartapp.exeption.DomainException;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.nutritionPlan.repository.NutritionPlanRepository;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.web.dto.NutritionPlanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class NutritionPlanService {
@@ -38,6 +41,11 @@ public class NutritionPlanService {
 
         return nutritionPlanRepository.findAll();
 
+    }
+
+    public void deleteNutritionPlanById(UUID id) {
+
+        nutritionPlanRepository.deleteById(id);
     }
 
 }

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.app.train7smartapp.exercise.model.Exercise;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
-import org.app.train7smartapp.workoutProgram.model.FavoriteWorkoutProgram;
 import org.app.train7smartapp.workoutProgram.model.WorkoutProgram;
 
 import java.time.LocalDateTime;
@@ -81,9 +80,6 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
     private List<WorkoutProgram> workoutPrograms = new ArrayList<>();
-
-    @OneToMany(mappedBy = "creator", fetch = FetchType.EAGER)
-    private List<FavoriteWorkoutProgram> favoriteWorkoutPrograms = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "creator")
     @OrderBy("creator ASC")

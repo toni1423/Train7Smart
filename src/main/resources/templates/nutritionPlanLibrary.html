@@ -27,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="nutritionPlan : ${user.nutritionPlans}" class="my-paintings"
+                <tr th:each="nutritionPlan : ${user.nutritionPlans}"
                     th:if="${user.username == nutritionPlan.creator.username}">
                     <td th:text="${nutritionPlan.creator.username}">[Creator Name]</td>
                     <td th:text="${nutritionPlan.name}">[Name]</td>

@@ -30,7 +30,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="exercise : ${historyList}" class="my-paintings"
+                <tr th:each="exercise : ${historyList}"
                     th:if="${user.username == exercise.creator.username}">
                     <td th:text="${exercise.creator.username}">[Creator Username]</td>
                     <td th:text="${exercise.name}">[Name]</td>

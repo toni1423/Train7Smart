@@ -41,7 +41,7 @@ public class ExerciseTest {
 
     @Test
     public void testCreateNewExercise_savesExerciseCorrectly() {
-        // Arrange: създаваме данни
+
         User user = User.builder().id(java.util.UUID.randomUUID()).username("ivan.22").build();
 
         ExerciseRequest request = ExerciseRequest.builder()
@@ -54,10 +54,10 @@ public class ExerciseTest {
                 .videoURL("https://www.youtube.com/watch?v=IODxDxX7oi4")
                 .build();
 
-        // Act
+
         exerciseService.createNewExercise(request, user);
 
-        // Assert
+
         ArgumentCaptor<Exercise> exerciseCaptor = ArgumentCaptor.forClass(Exercise.class);
         verify(exerciseRepository, times(1)).save(exerciseCaptor.capture());
 
@@ -75,47 +75,47 @@ public class ExerciseTest {
 
     @Test
     public void testGetAllExercises() {
-        // Arrange
+
         Exercise exercise1 = new Exercise();
         Exercise exercise2 = new Exercise();
         List<Exercise> mockList = Arrays.asList(exercise1, exercise2);
 
         when(exerciseRepository.findAll()).thenReturn(mockList);
 
-        // Act
+
         List<Exercise> result = exerciseService.getAllExercises();
 
-        // Assert
+
         assertEquals(2, result.size());
         verify(exerciseRepository, times(1)).findAll();
     }
 
     @Test
     public void testDeleteExerciseById() {
-        // Arrange
+
         UUID id = UUID.randomUUID();
 
-        // Act
+
         exerciseService.deleteExerciseById(id);
 
-        // Assert
+
         verify(exerciseRepository, times(1)).deleteById(id);
     }
 
     @Test
     public void testDeleteExerciseByIdThrowsException() {
-        // Arrange
+
         UUID id = UUID.randomUUID();
 
-        // Симулация: repository хвърля изключение
+
         doThrow(new EmptyResultDataAccessException(1))
                 .when(exerciseRepository).deleteById(id);
 
-        // Act & Assert
+
         try {
             exerciseService.deleteExerciseById(id);
         } catch (EmptyResultDataAccessException e) {
-            // Потвърждение, че изключението се е случило
+
             assertEquals(1, e.getExpectedSize());
         }
 

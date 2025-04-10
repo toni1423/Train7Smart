@@ -39,7 +39,7 @@ public class NutritionPlanServiceTest {
 
     @Test
     public void testCreateNewNutritionPlan_savesNutritionPlanCorrectly() {
-        // Arrange: подготвяме данни
+
         User creator = User.builder()
                 .id(UUID.randomUUID())
                 .username("ivan-23")
@@ -53,10 +53,10 @@ public class NutritionPlanServiceTest {
                 .nutritionPlanUrl("https://fitnesudoma.aktivenizdrav.com/?_ga=2.250863878.1001732588.1744128740-1793201762.1744128740")
                 .build();
 
-        // Act
+
         nutritionPlanService.createNewNutritionPlan(request, creator);
 
-        // Assert
+
         ArgumentCaptor<NutritionPlan> planCaptor = ArgumentCaptor.forClass(NutritionPlan.class);
         verify(nutritionPlanRepository, times(1)).save(planCaptor.capture());
 
@@ -71,17 +71,17 @@ public class NutritionPlanServiceTest {
 
     @Test
     void getAllNutritionPlans_shouldReturnListOfPlans() {
-        // Arrange
+
         NutritionPlan plan1 = NutritionPlan.builder().name("Plan A").build();
         NutritionPlan plan2 = NutritionPlan.builder().name("Plan B").build();
         List<NutritionPlan> mockPlans = List.of(plan1, plan2);
 
         when(nutritionPlanRepository.findAll()).thenReturn(mockPlans);
 
-        // Act
+
         List<NutritionPlan> result = nutritionPlanService.getAllNutritionPlans();
 
-        // Assert
+
         assertNotNull(result);
         assertEquals(2, result.size());
         assertEquals("Plan A", result.get(0).getName());
@@ -91,13 +91,13 @@ public class NutritionPlanServiceTest {
 
     @Test
     void getAllNutritionPlans_shouldReturnEmptyListWhenNoPlansExist() {
-        // Arrange
+
         when(nutritionPlanRepository.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
+
         List<NutritionPlan> result = nutritionPlanService.getAllNutritionPlans();
 
-        // Assert
+
         assertNotNull(result);
         assertTrue(result.isEmpty());
         verify(nutritionPlanRepository, times(1)).findAll();
@@ -105,27 +105,27 @@ public class NutritionPlanServiceTest {
 
     @Test
     public void getAllNutritionPlans_shouldReturnEmptyList() {
-        // Arrange
+
         when(nutritionPlanRepository.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
+
         List<NutritionPlan> result = nutritionPlanService.getAllNutritionPlans();
 
-        // Assert
+
         assertEquals(0, result.size());
     }
 
-//    Този тест проверява, че ако записът съществува, той ще бъде изтрит.
+
     @Test
     void deleteNutritionPlanById_shouldDeleteWhenExists() {
-        // Arrange
+
         UUID id = UUID.randomUUID();
         when(nutritionPlanRepository.existsById(id)).thenReturn(true);
 
-        // Act
+
         nutritionPlanService.deleteNutritionPlanById(id);
 
-        // Assert
+
         verify(nutritionPlanRepository).existsById(id);
         verify(nutritionPlanRepository).deleteById(id);
     }

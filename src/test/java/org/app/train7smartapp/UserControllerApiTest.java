@@ -34,28 +34,27 @@ public class UserControllerApiTest {
     @Test
     void putUnauthorizedRequestToSwitchRole_shouldReturn302AndRedirectToUsers() throws Exception {
 
-        // 1. Създаване на Request
         AuthenticationDetails principal = new AuthenticationDetails(UUID.randomUUID(), "User123", "123123", Role.USER, true);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.put("/users/{id}/role", UUID.randomUUID())
                 .with(SecurityMockMvcRequestPostProcessors.user(principal))  // Използване на user() от SecurityMockMvcRequestPostProcessors
                 .with(csrf());
 
-        // 2. Изпращане на Request и проверка на резултата
+
         mockMvc.perform(request)
-                .andExpect(status().is3xxRedirection())  // Очакваме пренасочване
-                .andExpect(redirectedUrl("/users"));  // Очакваме да се пренасочи към /users
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/users"));
     }
 
     @Test
     void putAuthorizedRequestToSwitchRole_shouldRedirectToUsers() throws Exception {
 
-        // 1. Build Request
+
         AuthenticationDetails principal = new AuthenticationDetails(UUID.randomUUID(), "User123", "123123", Role.ADMIN, true);
         MockHttpServletRequestBuilder request = put("/users/{id}/role", UUID.randomUUID())
                 .with(user(principal))
                 .with(csrf());
 
-        // 2. Send Request
+
         mockMvc.perform(request)
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/users"));

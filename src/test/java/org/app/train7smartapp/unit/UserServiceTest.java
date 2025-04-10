@@ -39,7 +39,7 @@ public class UserServiceTest {
         MockitoAnnotations.openMocks(this);
         userService = new UserService(userRepository, passwordEncoder);
 
-        // Подготвяме тестови данни
+
         userId = UUID.randomUUID();
         userEditRequest = UserEditRequest.builder()
                 .firstName("John")
@@ -54,7 +54,7 @@ public class UserServiceTest {
                 .gender(Gender.MALE)
                 .build();
 
-        // Създаваме съществуващ потребител в базата
+
         existingUser = User.builder()
                 .id(userId)
                 .firstName("")
@@ -72,13 +72,13 @@ public class UserServiceTest {
 
     @Test
     public void testUserEditData_updatesUserCorrectly() {
-        // Мокваме findById да връща съществуващия потребител
+
         when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
 
-        // Извикваме метода, който тестваме
+
         userService.userEditData(userId, userEditRequest);
 
-        // Проверяваме дали данните са актуализирани
+
         assertEquals("John", existingUser.getFirstName());
         assertEquals("Doe", existingUser.getLastName());
         assertEquals("john.doe@example.com", existingUser.getEmail());
@@ -90,16 +90,16 @@ public class UserServiceTest {
         assertEquals("New York", existingUser.getCity());
         assertEquals("MALE", existingUser.getGender().name());
 
-        // Проверяваме дали save е извикан точно веднъж с актуализирания потребител
+
         verify(userRepository, times(1)).save(existingUser);
     }
 
     @Test
     public void testUserEditData_throwsExceptionWhenUserNotFound() {
-        // Мокваме findById да връща празен Optional (потребителят не съществува)
+
         when(userRepository.findById(userId)).thenReturn(Optional.empty());
 
-        // Проверяваме дали се хвърля изключение, когато потребителят не бъде намерен
+
         assertThrows(org.app.train7smartapp.exeption.DomainException.class, () -> {
             userService.userEditData(userId, userEditRequest);
         });
@@ -115,7 +115,7 @@ public class UserServiceTest {
 
         when(userRepository.findByUsername("toni123")).thenReturn(Optional.empty());
 
-        // Мокваме passwordEncoder
+
         when(passwordEncoder.encode("123321")).thenReturn("encoded123321");
 
         User savedUser = new User();
@@ -131,17 +131,17 @@ public class UserServiceTest {
 
     @Test
     void testRegisterNewUser_throwsWhenUsernameAlreadyExists() {
-        // Arrange
+
         RegisterRequest request = new RegisterRequest();
         request.setUsername("toni_123");
 
-        User existingUser = new User(); // Създаваме реален потребител
+        User existingUser = new User();
         existingUser.setUsername("toni_123");
 
         when(userRepository.findByUsername("toni_123"))
-                .thenReturn(Optional.of(existingUser)); // -> не Optional.of(null)!
+                .thenReturn(Optional.of(existingUser));
 
-        // Act + Assert
+
         UsernameAlreadyExistException exception = assertThrows(
                 UsernameAlreadyExistException.class,
                 () -> userService.registerNewUser(request)
@@ -165,13 +165,13 @@ public class UserServiceTest {
 
         List<User> mockUsers = List.of(ivan, gosho);
 
-        // Мокване на userRepository.findAll()
+
         when(userRepository.findAll()).thenReturn(mockUsers);
 
-        // Извикване на метода, който тестваме
+
         List<User> result = userService.getAllUsers();
 
-        // Проверка
+
         assertEquals(2, result.size());
         assertEquals("ivan_21", result.get(0).getUsername());
         assertEquals("gosho.32", result.get(1).getUsername());
@@ -203,7 +203,7 @@ public class UserServiceTest {
 
     @Test
     void userSwitchStatus_shouldToggleStatus() {
-        // Потребителят е активен по начало
+
         existingUser.setActive(true);
         when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
 

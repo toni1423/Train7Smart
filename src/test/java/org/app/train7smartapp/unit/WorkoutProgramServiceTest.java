@@ -37,7 +37,7 @@ public class WorkoutProgramServiceTest {
 
     @Test
     public void createNewWorkoutProgram_shouldSaveWorkoutProgram() {
-        // Arrange
+
         WorkoutProgramRequest request = new WorkoutProgramRequest();
         request.setName("Push-Pull-Legs");
         request.setDuration("6 weeks");
@@ -49,10 +49,10 @@ public class WorkoutProgramServiceTest {
         user.setId(UUID.randomUUID());
         user.setUsername("ivan-23");
 
-        // Act
+
         workoutProgramService.createNewWorkoutProgram(request, user);
 
-        // Assert
+
         ArgumentCaptor<WorkoutProgram> captor = ArgumentCaptor.forClass(WorkoutProgram.class);
         verify(workoutProgramsRepository).save(captor.capture());
 
@@ -67,7 +67,7 @@ public class WorkoutProgramServiceTest {
 
     @Test
     public void getAllWorkoutProgram_shouldReturnWorkoutPrograms() {
-        // Arrange
+
         WorkoutProgram workoutProgram1 = new WorkoutProgram();
         workoutProgram1.setName("Push-Pull-Legs");
 
@@ -76,13 +76,13 @@ public class WorkoutProgramServiceTest {
 
         List<WorkoutProgram> workoutPrograms = Arrays.asList(workoutProgram1, workoutProgram2);
 
-        // Mock the repository call
+
         when(workoutProgramsRepository.findAll()).thenReturn(workoutPrograms);
 
-        // Act
+
         List<WorkoutProgram> result = workoutProgramService.getAllWorkoutProgram();
 
-        // Assert
+
         assertEquals(2, result.size());
         assertEquals("Push-Pull-Legs", result.get(0).getName());
         assertEquals("Full Body Workout", result.get(1).getName());
@@ -90,13 +90,13 @@ public class WorkoutProgramServiceTest {
 
     @Test
     public void getAllWorkoutProgram_shouldReturnEmptyList() {
-        // Arrange
+
         when(workoutProgramsRepository.findAll()).thenReturn(Collections.emptyList());
 
-        // Act
+
         List<WorkoutProgram> result = workoutProgramService.getAllWorkoutProgram();
 
-        // Assert
+
         assertEquals(0, result.size());
     }
 
@@ -104,13 +104,13 @@ public class WorkoutProgramServiceTest {
     public void deleteWorkoutProgramById_shouldDeleteProgramSuccessfully_whenProgramExists() {
         UUID workoutProgramId = UUID.randomUUID();
 
-        // Подготвяне на мока да не хвърля изключение, когато се извика deleteById
+
         doNothing().when(workoutProgramsRepository).deleteById(workoutProgramId);
 
-        // Извикване на метода
+
         workoutProgramService.deleteWorkoutProgramById(workoutProgramId);
 
-        // Проверка дали deleteById е бил извикан с правилния параметър
+
         verify(workoutProgramsRepository).deleteById(workoutProgramId);
     }
 
@@ -118,15 +118,15 @@ public class WorkoutProgramServiceTest {
     public void deleteWorkoutProgramById_shouldThrowException_whenProgramDoesNotExist() {
         UUID workoutProgramId = UUID.randomUUID();
 
-        // Подготвяне на мока да хвърли изключение, ако програмата не съществува
+
         doThrow(new IllegalArgumentException("Workout Program not found")).when(workoutProgramsRepository).deleteById(workoutProgramId);
 
-        // Проверка дали се хвърля изключение
+
         assertThrows(IllegalArgumentException.class, () -> {
             workoutProgramService.deleteWorkoutProgramById(workoutProgramId);
         });
 
-        // Проверка дали deleteById е бил извикан с правилния параметър
+
         verify(workoutProgramsRepository).deleteById(workoutProgramId);
     }
 }

@@ -1,7 +1,7 @@
 package org.app.train7smartapp.web;
 
 import jakarta.validation.Valid;
-import org.app.train7smartapp.exeption.UsernameAlreadyExistException;
+import org.app.train7smartapp.exeption.UserNotFoundException;
 import org.app.train7smartapp.security.AuthenticationDetails;
 import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.user.service.UserService;
@@ -44,7 +44,7 @@ public class IndexController {
     public String registrationDataProcessing(@Valid RegisterRequest registerRequest, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "/register";
+            return "register";
         }
 
         userService.registerNewUser(registerRequest);
@@ -68,8 +68,14 @@ public class IndexController {
 
     @GetMapping("/home")
     public ModelAndView getHomePage(@AuthenticationPrincipal AuthenticationDetails authenticationDetails) {
+        if (authenticationDetails == null || authenticationDetails.getUserId() == null) {
+            throw new IllegalArgumentException("Authentication details or userId is missing");
+        }
 
         User user = userService.getById(authenticationDetails.getUserId());
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");

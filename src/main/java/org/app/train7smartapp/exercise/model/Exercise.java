@@ -38,9 +38,6 @@ public class Exercise {
 
     private String equipment;
 
-    @Column(nullable = false)
-    private String steps;
-
     private String videoURL;
 
 }

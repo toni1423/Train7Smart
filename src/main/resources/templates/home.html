@@ -13,9 +13,6 @@
     <title>Home</title>
 </head>
 <body>
-<nav>
-
-</nav>
 <main>
     <div class="nav-bar">
         <div class="side-bar-container">
@@ -46,7 +43,7 @@
                                  viewBox="0 0 24 24">
                             </svg>
                         </a>
-                        <a th:href="@{/calories/form/{userId}(userId=${user.id})}">
+                        <a th:href="@{/calories/form}">
                             <p>CalorieCalculator</p>
                             <svg style="width: 25px; height: 25px;" class="text-gray-800 dark:text-white"
                                  aria-hidden="true"
@@ -80,7 +77,7 @@
                                  viewBox="0 0 24 24">
                             </svg>
                         </a>
-                        <a th:href="@{/calories/user/{id}/history(id=${user.id})}">
+                        <a th:href="@{/calories/user/history}">
                             <p>Calories</p>
                             <svg style="width: 25px; height: 25px;" class="text-gray-800 dark:text-white"
                                  aria-hidden="true"

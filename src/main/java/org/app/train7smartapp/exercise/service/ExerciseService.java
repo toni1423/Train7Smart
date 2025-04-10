@@ -31,7 +31,6 @@ public class ExerciseService {
                 .muscleGroupsTargeted(exerciseRequest.getMuscleGroupsTargeted())
                 .difficulty(exerciseRequest.getDifficulty())
                 .equipment(exerciseRequest.getEquipment())
-                .steps(exerciseRequest.getSteps())
                 .videoURL(exerciseRequest.getVideoURL())
                 .build();
 

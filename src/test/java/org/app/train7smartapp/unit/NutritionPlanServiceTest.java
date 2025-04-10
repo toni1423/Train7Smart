@@ -1,4 +1,4 @@
-package org.app.train7smartapp;
+package org.app.train7smartapp.unit;
 
 import org.app.train7smartapp.nutritionPlan.model.DietaryRestrictions;
 import org.app.train7smartapp.nutritionPlan.model.MacronutrientBreakdown;
@@ -9,19 +9,20 @@ import org.app.train7smartapp.user.model.User;
 import org.app.train7smartapp.web.dto.NutritionPlanRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
+@ExtendWith(MockitoExtension.class)
 public class NutritionPlanServiceTest {
 
     @Mock
@@ -100,5 +101,32 @@ public class NutritionPlanServiceTest {
         assertNotNull(result);
         assertTrue(result.isEmpty());
         verify(nutritionPlanRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void getAllNutritionPlans_shouldReturnEmptyList() {
+        // Arrange
+        when(nutritionPlanRepository.findAll()).thenReturn(Collections.emptyList());
+
+        // Act
+        List<NutritionPlan> result = nutritionPlanService.getAllNutritionPlans();
+
+        // Assert
+        assertEquals(0, result.size());
+    }
+
+//    Този тест проверява, че ако записът съществува, той ще бъде изтрит.
+    @Test
+    void deleteNutritionPlanById_shouldDeleteWhenExists() {
+        // Arrange
+        UUID id = UUID.randomUUID();
+        when(nutritionPlanRepository.existsById(id)).thenReturn(true);
+
+        // Act
+        nutritionPlanService.deleteNutritionPlanById(id);
+
+        // Assert
+        verify(nutritionPlanRepository).existsById(id);
+        verify(nutritionPlanRepository).deleteById(id);
     }
 }

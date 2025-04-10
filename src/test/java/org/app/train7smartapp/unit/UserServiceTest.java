@@ -1,4 +1,4 @@
-package org.app.train7smartapp;
+package org.app.train7smartapp.unit;
 
 import org.app.train7smartapp.exeption.UsernameAlreadyExistException;
 import org.app.train7smartapp.user.model.*;
@@ -199,26 +199,6 @@ public class UserServiceTest {
         });
 
         verify(userRepository, times(1)).findById(userId);
-    }
-
-    @Test
-    public void testDeleteUser_successfullyDeletesUser() {
-        when(userRepository.findById(userId)).thenReturn(Optional.of(existingUser));
-
-        userService.deleteUser(userId);
-
-        verify(userRepository, times(1)).delete(existingUser);
-    }
-
-    @Test
-    public void testDeleteUser_throwsWhenUserNotFound() {
-        when(userRepository.findById(userId)).thenReturn(Optional.empty());
-
-        assertThrows(org.app.train7smartapp.exeption.DomainException.class, () -> {
-            userService.deleteUser(userId);
-        });
-
-        verify(userRepository, never()).delete(any());
     }
 
     @Test

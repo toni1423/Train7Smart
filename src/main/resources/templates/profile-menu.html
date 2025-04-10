@@ -12,11 +12,47 @@
     <link rel="stylesheet" type="text/css" href="/css/home.css">
     <link rel="stylesheet" type="text/css" href="/css/profile-menu.css">
     <title>Edit Profile</title>
+    <style>
+        /* Центрираме бутоните и ги правим с еднакъв размер */
+        .buttons-container {
+            display: flex;
+            flex-direction: column; /* Подреждаме бутоните един под друг */
+            align-items: center; /* Центрираме бутоните */
+            margin-top: 20px;
+        }
+
+        .profile-actions-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            background: radial-gradient(circle, rgb(135 102 255 / 47%), #12000080);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 200px; /* Увеличаваме ширината, за да изглеждат еднакви */
+            margin: 10px 0; /* Разстояние между бутоните */
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .profile-actions-button svg {
+            margin-left: 8px;
+        }
+
+        /* За да има бутоните същото разстояние и да изглеждат добре */
+        .profile-actions-button p {
+            margin: 0;
+        }
+
+        /* За да се подредят правилно и полетата да не се натрупват */
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-<nav>
-
-</nav>
 <main>
     <div class="home-section">
         <div class="single-section-box profile-menu">
@@ -78,29 +114,22 @@
                 <label for="weight">Weight</label>
                 <input type="text" id="weight" placeholder="Weight" th:field="*{weight}">
 
-                <button class="profile-actions-button">
-                    <p>Save</p>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </svg>
-                </button>
+                <div class="buttons-container">
+                    <button type="submit" class="profile-actions-button">
+                        <p>Save</p>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        </svg>
+                    </button>
+                    <a href="/home" class="profile-actions-button">
+                        <p>Back to Home</p>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 0 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 0 1 .708.708L2.707 7.5H14.5A.5.5 0 0 1 15 8z"/>
+                        </svg>
+                    </a>
+                </div>
             </form>
-            <div class="func-block">
-                <a href="/home" class="active">
-                    <p>Dashboard</p>
-                    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                              d="M5 7h14M5 12h14M5 17h14"></path>
-                    </svg>
-                </a>
-            </div>
         </div>
     </div>
 </main>
-
-<div class="footer"><p>© 2025 Train7Smart.App. All rights reserved.</p></div>
-
 </body>
 </html>

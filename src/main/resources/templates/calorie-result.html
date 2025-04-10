@@ -3,30 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <title>Result</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f1f1f1;
             display: flex;
-            justify-content: center;
-            padding: 40px;
+            justify-content: center; /* Центрираме хоризонтално */
+            align-items: center; /* Центрираме вертикално */
+            height: 100vh; /* Задаваме височина на тялото да е 100% от височината на прозореца */
+            margin: 0; /* Премахваме отстъпите на body */
+            background-color: #f1f1f1; /* Фон на страницата */
         }
+
         .result-card {
-            background: white;
+            background: radial-gradient(circle, rgb(135 102 255 / 47%), #12000080);
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
             width: 400px;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
         }
+
         h2 {
-            color: #333;
+            color: #0056b3;
         }
+
         .calories {
             font-size: 32px;
             font-weight: bold;
             color: #28a745;
             margin-top: 20px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Стил за бутона Go back to the beginning */
+        .go-back-btn {
+            background-color: #007bff; /* Синият фон за бутона */
+            color: white;
+            padding: 14px;
+            width: 100%;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: auto;
+            margin-top: 15px; /* За да е разположен точно под Calculate */
+            max-width: 200px; /* За да не стане твърде широк */
+        }
+
+        .go-back-btn:hover {
+            background-color: #0056b3; /* Тъмен син при hover */
         }
     </style>
 </head>
@@ -34,6 +81,7 @@
 <div class="result-card">
     <h2>Calculated Calories</h2>
     <div class="calories" th:text="${result.calories} + ' kcal'"></div>
+    <a href="/home" class="go-back-btn">Go back to the beginning</a>
 </div>
 </body>
 </html>

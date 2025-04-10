@@ -24,7 +24,6 @@
                     <th>MuscleGroupsTargeted</th>
                     <th>Difficulty</th>
                     <th>Equipment</th>
-                    <th>Steps</th>
                     <th>VideoURL</th>
                     <th>DELETE</th>
                 </tr>
@@ -39,7 +38,6 @@
                     <td th:text="${exercise.muscleGroupsTargeted}">[MuscleGroupsTargeted]</td>
                     <td th:text="${exercise.difficulty}">[Difficulty]</td>
                     <td th:text="${exercise.equipment}">[Equipment]</td>
-                    <td th:text="${exercise.steps}">[Steps]</td>
                     <td th:text="${exercise.videoURL}">[VideoURL]</td>
                     <td style="width: 15%; padding:70px;">
                         <form th:action="@{'/exercises/' + ${exercise.id}}" method="post"

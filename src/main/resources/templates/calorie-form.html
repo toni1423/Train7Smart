@@ -86,6 +86,8 @@
         </label>
         <label>
             <input type="number" th:field="*{weight}" placeholder="Weight (kg)" required/>
+            <small th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"
+                   class="alert-warning">Description error message</small>
         </label>
         <label>
             <input type="number" th:field="*{height}" placeholder="Height (cm)" required/>

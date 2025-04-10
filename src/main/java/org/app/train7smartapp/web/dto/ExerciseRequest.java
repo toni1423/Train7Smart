@@ -36,9 +36,6 @@ public class ExerciseRequest {
     @Size(max = 50, message = "Description must be a maximum of 50 characters")
     private String equipment;
 
-    @Size(max = 1000, message = "Description must be a maximum of 1000 characters")
-    private String steps;
-
     @URL
     private String videoURL;
 

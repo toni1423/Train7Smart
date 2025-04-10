@@ -109,9 +109,9 @@
 
 .train-7-smart-nav-bar {
   display: flex;
-  padding: 20px 0;
+  padding: 13px 0;
   width: 100%;
-  background: radial-gradient(ellipse at top, #746ab0 0%, #a095e6 10%, #faf9f9 20%, #c5bfff 30%, #978ef1 40%, #7871f6 50%, #817cff 60%, #8eafe9 70%, #a1a1ff 80%, #a8a8ff 90%, #6d78f3 100%);
+  background: radial-gradient(ellipse at top, #746ab0 0%, #a095e6 10%, #faf9f9 20%, #c5bfff 30%, #978ef1 40%, #7871f6 50%, #ff6767 60%, #8eafe9 70%, #a1a1ff 80%, #a8a8ff 90%, #6d78f3 100%);
   background-size: 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -119,6 +119,7 @@
 
 .train-7-smart-nav-bar div{
   padding: 5px 5px;
+  font-size: 20px;
 }
 
 .train-7-smart-nav-bar-name {

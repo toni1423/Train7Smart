@@ -1,5 +1,4 @@
 package org.app.train7smartapp.nutritionPlan.service;
-
 import org.app.train7smartapp.exeption.DomainException;
 import org.app.train7smartapp.nutritionPlan.model.NutritionPlan;
 import org.app.train7smartapp.nutritionPlan.repository.NutritionPlanRepository;
@@ -44,7 +43,9 @@ public class NutritionPlanService {
     }
 
     public void deleteNutritionPlanById(UUID id) {
-
+        if (!nutritionPlanRepository.existsById(id)) {
+            throw new DomainException("Nutrition Plan with id [%s] not found.".formatted(id), HttpStatus.NOT_FOUND);
+        }
         nutritionPlanRepository.deleteById(id);
     }
 

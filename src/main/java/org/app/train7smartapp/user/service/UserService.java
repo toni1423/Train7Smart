@@ -1,7 +1,6 @@
 package org.app.train7smartapp.user.service;
 
 import jakarta.transaction.Transactional;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.app.train7smartapp.exeption.DomainException;
 import org.app.train7smartapp.exeption.UsernameAlreadyExistException;
@@ -85,11 +84,6 @@ public class UserService implements UserDetailsService {
 
     }
 
-    public void deleteUser(UUID id) {
-        User user = getById(id); // за да хвърли изключение, ако няма такъв
-        userRepository.delete(user);
-    }
-
     public List<User> getAllUsers() {
 
         return userRepository.findAll();
@@ -130,14 +124,6 @@ public class UserService implements UserDetailsService {
         }
 
         userRepository.save(user);
-    }
-
-    public void deleteUserAccountById(UUID id) {
-
-        User user = getById(id);
-
-        userRepository.deleteById(id);
-
     }
 
     @Override
